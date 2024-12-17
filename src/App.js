@@ -1,27 +1,14 @@
 import './App.css';
+import Header from './components/Header.js'
+import Technolodgies from './components/Technologies.js'
 
 const App = () => {
   return (
     <div className="App">
       <Header />
-      <Tehnolodgies />
+      <Technolodgies />
     </div>
   );
 }
 
-const Header = () => {
-  return (
-    <div>
-      <span>i am component Header'</span>
-    </div>
-  )
-}
-
-const Tehnolodgies = () => {
-  return (
-    <div>
-      <span>i am Tehnolodgies</span>
-    </div>
-  )
-}
 export default App;
