@@ -1,0 +1,14 @@
+.myPosts {
+    padding: 5px;
+}
+
+.posts textarea {
+    width: 800px;
+    height: 50px;
+}
+
+.button button {
+    width: 100px;
+    height: 25px;
+    cursor: pointer;
+}

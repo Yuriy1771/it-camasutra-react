@@ -1,0 +1,15 @@
+.item_post {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border-bottom: 1px solid rgb(179, 182, 123);
+}
+
+.post_user_avatar {
+    width: 50px;
+    border-radius: 10px;
+}
+
+.post_text {
+    text-align: center;
+}
