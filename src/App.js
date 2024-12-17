@@ -1,11 +1,27 @@
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      Hello App
+      <Header />
+      <Tehnolodgies />
     </div>
   );
 }
 
+const Header = () => {
+  return (
+    <div>
+      <span>i am component Header'</span>
+    </div>
+  )
+}
+
+const Tehnolodgies = () => {
+  return (
+    <div>
+      <span>i am Tehnolodgies</span>
+    </div>
+  )
+}
 export default App;
