@@ -1,0 +1,14 @@
+.nav {
+    grid-area: nav;
+    background-color: yellow;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.item a {
+    color: black;
+}
+
+.item.active a {
+    color: blueviolet;
+}
