@@ -3,10 +3,23 @@
     background-color: yellow;
     border: 1px solid black;
     text-align: center;
+    align-self: start;
+}
+.item {
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
 }
 
+.item:hover {
+    background-color: rgb(237, 237, 0);
+    transition: .2s;
+}
 .item a {
     color: black;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
 }
 
 .item.active a {
