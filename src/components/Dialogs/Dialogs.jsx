@@ -1,21 +1,21 @@
 import React from 'react'
 import styles from './Dialogs.module.css'
-import {NavLink} from 'react-router-dom'
-
+import DialogItem from "./DialogItem/DialogItem";
+import MessageItem from "./MessageItem/MessageItem";
 
 const Dialogs = (props) => {
     return (
         <div className={styles.message_window}>
             <div className={styles.dialogs}>
-                <div className={styles.dialog_item}><NavLink to='/messages/1'>Katy</NavLink></div>
-                <div className={styles.dialog_item}><NavLink to='/messages/2'>Artem</NavLink></div>
-                <div className={styles.dialog_item}><NavLink to='/messages/3'>Maria</NavLink></div>
-                <div className={styles.dialog_item}><NavLink to='/messages/4'>Liza</NavLink></div>
-                <div className={styles.dialog_item}><NavLink to='/messages/5'>Michail</NavLink></div>
-                <div className={styles.dialog_item}><NavLink to='/messages/6'>Albert</NavLink></div>
+                <DialogItem name='Katy' id='1'/>
+                <DialogItem name='Artem' id='2'/>
+                <DialogItem name='Maria' id='3'/>
+                <DialogItem name='Liza' id='4'/>
+                <DialogItem name='Michail' id='5'/>
+                <DialogItem name='Albert' id='6'/>
             </div>
             <div className={styles.messages}>
-                <div className={styles.message_item}>Hello! i am at work now</div>
+                <MessageItem message='Hello! i am at work now'/>
             </div>
         </div>
     )

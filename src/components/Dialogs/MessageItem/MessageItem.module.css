@@ -1,0 +1,7 @@
+.message {
+    grid-area: message;
+}
+
+.message_item {
+    margin: 10px;
+}
