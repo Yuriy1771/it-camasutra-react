@@ -1,26 +1,29 @@
 import React from 'react'
 import styles from './Navbar.module.css'
-console.log(styles)
+import {NavLink} from 'react-router-dom'
+
+const ActiveLink = ({isActive}) => isActive ? styles.active : styles.item.a;
+
 const Navbar = () => {
-  return (
-    <nav className={styles.nav}>
-      <div className={`${styles.item} ${styles.active}`}>
-        <a href='/profile'>Profile</a>
-      </div>
-      <div className={styles.item}>
-        <a href='/messages'>Messages</a>
-      </div>
-      <div className={styles.item}>
-        <a href='/news'>News</a>
-      </div>
-      <div className={styles.item}>
-        <a href='/music'>Music</a>
-      </div>
-      <div className={styles.item}>
-        <a href='/settings'>Settings</a>
-      </div>
-    </nav>
-  )
+    return (
+        <nav className={styles.nav}>
+            <div className={`${styles.item} ${styles.active}`}>
+                <NavLink to='/profile'className={ActiveLink}>Profile</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to='/messages' className={ActiveLink}>Messages</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to='/news' className={ActiveLink}>News</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to='/music' className={ActiveLink}>Music</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to='/settings' className={ActiveLink}>Settings</NavLink>
+            </div>
+        </nav>
+    )
 }
 
 export default Navbar
