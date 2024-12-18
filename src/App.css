@@ -1,4 +1,4 @@
-.app-wrapper {
+.app_wrapper {
   margin: 0 auto;
   display: grid;
   grid-template-areas:
@@ -7,4 +7,10 @@
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   width: 1200px;
+}
+
+.app_wrapper_content {
+  grid-area: content;
+  background-color: yellow;
+  border: 1px solid black;
 }

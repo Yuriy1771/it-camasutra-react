@@ -12,4 +12,10 @@
 
 .post_text {
     text-align: center;
+    margin-left: 5px;
+}
+
+.like_post img {
+    width: 15px;
+    margin-left: 10px;
 }
