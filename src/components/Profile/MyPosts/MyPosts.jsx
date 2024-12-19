@@ -3,12 +3,7 @@ import styles from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = (props) => {
-    let posts = [
-        {id: 1, postMessage: 'Hi, how are you?', likes_count: 5, userAvatar: '',},
-        {id: 2, postMessage: 'Why doesn\'t my friend answer me?', likes_count: 10, userAvatar: '',},
-    ]
-
-    let componentPosts = posts.map((post) => {
+    let componentPosts = props.posts.map((post) => {
         return <Post message={post.postMessage} likes_count={post.likes_count}/>
     })
 
