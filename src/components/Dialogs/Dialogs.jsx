@@ -4,7 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 
 const Dialogs = (props) => {
-    let dialogsData = [
+    let dialogs = [
         {id: 1, name: 'Yuliana',},
         {id: 2, name: 'Adam',},
         {id: 3, name: 'Mom',},
@@ -15,24 +15,26 @@ const Dialogs = (props) => {
         {id: 8, name: 'Dad'},
     ]
 
-    let messagesData = [
+    let messages = [
         {id: 1, message: 'Hello! i am at work now'},
     ]
-    console.log(dialogsData[0].name, dialogsData[0].id)
+
+    let componentDialogs = dialogs.map((dialog) => {
+        return <DialogItem id={dialog.id} name={dialog.name}/>
+
+    })
+
+    let componentMessages = messages.map((message) => {
+        return <MessageItem message={message.message}/>
+    })
+
     return (
         <div className={styles.message_window}>
             <div className={styles.dialogs}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id}/>
-                <DialogItem name={dialogsData[3].name} id={dialogsData[3].id}/>
-                <DialogItem name={dialogsData[4].name} id={dialogsData[4].id}/>
-                <DialogItem name={dialogsData[5].name} id={dialogsData[5].id}/>
-                <DialogItem name={dialogsData[6].name} id={dialogsData[6].id}/>
-                <DialogItem name={dialogsData[7].name} id={dialogsData[7].id}/>
+                {componentDialogs}
             </div>
             <div className={styles.messages}>
-                <MessageItem message={messagesData[0].message}/>
+                {componentMessages}
             </div>
         </div>
     )
