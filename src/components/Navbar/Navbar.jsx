@@ -5,12 +5,12 @@ import {NavLink} from 'react-router-dom'
 
 const Navbar = () => {
 
-const ActiveLink = ({isActive}) => isActive ? styles.active : styles.item.a;
+    const ActiveLink = ({isActive}) => isActive ? styles.active : styles.item.a;
 
     return (
         <nav className={styles.nav}>
             <div className={`${styles.item} ${styles.active}`}>
-                <NavLink to='/profile'className={ActiveLink}>Profile</NavLink>
+                <NavLink to='/profile' className={ActiveLink}>Profile</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink to='/messages' className={ActiveLink}>Messages</NavLink>
