@@ -4,12 +4,12 @@ import Post from './Post/Post'
 
 const MyPosts = (props) => {
     let componentPosts = props.state.posts.map((post) => {
-        return <Post message={post.postMessage} likes_count={post.likes_count}/>
+        return <Post message={post.postMessage} likes_count={post.likesCount}/>
     })
     let newPostRef = React.createRef()
     let addPost = () => {
         let textOfTextArea = newPostRef.current.value
-        alert(textOfTextArea)
+        props.addPost(textOfTextArea)
     }
     return (
         <div className={styles.myPosts}>

@@ -1,8 +1,8 @@
 let state = {
     profilePage: {
         posts: [
-            {id: 1, postMessage: 'Hi, how are you?', likes_count: 5, userAvatar: '',},
-            {id: 2, postMessage: 'Why doesn\'t my friend answer me?', likes_count: 10, userAvatar: '',},
+            {id: 1, postMessage: 'Hi, how are you?', likesCount: 5, userAvatar: '',},
+            {id: 2, postMessage: 'Why doesn\'t my friend answer me?', likesCount: 10, userAvatar: '',},
         ],
     },
     dialogsPage: {
@@ -20,6 +20,13 @@ let state = {
             {id: 8, name: 'Dad'},
         ],
     },
+}
+
+export let addPost = (postText) => {
+    let post = {
+        id: 3, postMessage: postText, likesCount: 0, userAvatar: '',
+    }
+    state.profilePage.posts.push(post)
 }
 
 export default state
