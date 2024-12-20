@@ -3,6 +3,7 @@ import reportWebVitals from './reportWebVitals';
 import {rerenderTree} from "./render";
 import state from "./redux/state";
 
+window.state = state
 rerenderTree(state)
 
 // If you want to start measuring performance in your app, pass a function

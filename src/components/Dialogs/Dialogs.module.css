@@ -2,10 +2,44 @@
     display: grid;
     grid-template-areas: 'dialog message';
     grid-template-columns: 2fr 10fr;
+    height: auto;
 }
 
 .dialogs {
     grid-area: dialog;
     margin: 10px;
     border-right: 1px solid black;
+}
+.messagesWindow {
+    border-bottom: 1px solid black;
+}
+
+.message_item {
+    margin: 10px;
+}
+
+.blockSendMessage {
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    height: 80%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+
+}
+
+.blockSendMessage textarea {
+    width: 50%;
+    height: 44px;
+    margin-bottom: 10px;
+
+}
+
+.blockSendMessage button {
+    margin-left: 3px;
+    cursor: pointer;
+    width: 60px;
+    height: 50px;
+    margin-bottom: 10px;
+
 }
