@@ -10,6 +10,7 @@ const MyPosts = (props) => {
     let addPost = () => {
         let textOfTextArea = newPostRef.current.value
         props.addPost(textOfTextArea)
+        newPostRef.current.value = ''
     }
     return (
         <div className={styles.myPosts}>
