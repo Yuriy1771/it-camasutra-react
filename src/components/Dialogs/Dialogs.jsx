@@ -37,8 +37,10 @@ const Dialogs = (props) => {
                 <div className={styles.message_item}>
                     {props.message}
                 </div>
-                    <textarea onChange={onChangeText} ref={newMessageRef} value={props.state.newTextMessage}></textarea>
+                <div className={styles.userInputBlock}>
+                    <textarea onChange={onChangeText} ref={newMessageRef} value={props.state.newTextMessage}/>
                     <button onClick={addMessage}>send</button>
+                </div>
             </div>
         </div>
     )
