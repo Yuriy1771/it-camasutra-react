@@ -6,14 +6,18 @@ const MyPosts = (props) => {
     let componentPosts = props.state.posts.map((post) => {
         return <Post message={post.postMessage} likes_count={post.likes_count}/>
     })
-
+    let newPostRef = React.createRef()
+    let addPost = () => {
+        let textOfTextArea = newPostRef.current.value
+        alert(textOfTextArea)
+    }
     return (
         <div className={styles.myPosts}>
             write post:
             <div className={styles.posts}>
-                <textarea></textarea>
+                <textarea ref={newPostRef}></textarea>
                 <div className={styles.button}>
-                    <button>send</button>
+                    <button onClick={addPost}>add post</button>
                 </div>
                 <span>My posts:</span>
                 {componentPosts}
