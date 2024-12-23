@@ -1,5 +1,6 @@
-import {rerenderTree} from "../render";
+let rerenderTree = () => {
 
+}
 let state = {
     profilePage: {
         posts: [
@@ -52,6 +53,10 @@ export let addMessage = () => {
 export let updateNewTextMessage = (newText) => {
     state.dialogsPage.newTextMessage = newText
     rerenderTree(state)
+}
+
+export const subscribe = (observer) => {
+    rerenderTree = observer
 }
 
 export default state

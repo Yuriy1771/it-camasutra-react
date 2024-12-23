@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './ProfileInfo.module.css'
 import user_shapka_img from "../../../images/user_shapka.jpeg";
-import user_avatar_img from "../../../images/avatar_user.jpg";
+import user_avatar_img from "../../../images/user_avatar.jpeg";
 
 const ProfileInfo = (props) => {
     return (

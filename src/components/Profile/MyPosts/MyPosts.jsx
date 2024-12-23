@@ -3,7 +3,6 @@ import styles from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = (props) => {
-    debugger
     let componentPosts = props.state.posts.map((post) => {
         return <Post message={post.postMessage} likes_count={post.likesCount}/>
     })
