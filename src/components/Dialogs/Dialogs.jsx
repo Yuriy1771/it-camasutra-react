@@ -6,21 +6,21 @@ import MessageItem from "./MessageItem/MessageItem";
 const Dialogs = (props) => {
     debugger
     let newMessageRef = React.createRef()
-    let componentDialogs = props.store.getState().dialogsPage.dialogs.map((dialog) => {
+    let componentDialogs = props.state.dialogsPage.dialogs.map((dialog) => {
         return <DialogItem id={dialog.id} name={dialog.name}/>
 
     })
 
     let addMessage = () => {
-        props.store.addMessage()
+        props.dispatch({type: 'ADD_MESSAGE'})
     }
 
     let onChangeText = () => {
-        let textMessage = newMessageRef.current.value
-        props.store.updateNewTextMessage(textMessage)
+        let text = newMessageRef.current.value
+        props.dispatch({type: 'UPDATE_NEW_TEXT_MESSAGE', newText: text})
     }
 
-    let componentMessages = props.store.getState().dialogsPage.messages.map((message) => {
+    let componentMessages = props.state.dialogsPage.messages.map((message) => {
         return <MessageItem
             message={message.message}
         />
@@ -34,7 +34,7 @@ const Dialogs = (props) => {
             <div className={styles.messages}>
                 {componentMessages}
                 <div className={styles.userInputBlock}>
-                    <textarea onChange={onChangeText} ref={newMessageRef} value={props.store.getState().dialogsPage.newTextMessage}/>
+                    <textarea onChange={onChangeText} ref={newMessageRef} value={props.state.dialogsPage.newTextMessage}/>
                     <button onClick={addMessage}>send</button>
                 </div>
             </div>

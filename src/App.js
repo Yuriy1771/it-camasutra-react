@@ -7,9 +7,9 @@ import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import store from "./redux/state";
 
 const App = (props) => {
-    debugger
     return (
         <BrowserRouter>
             <div className="app_wrapper">
@@ -18,11 +18,13 @@ const App = (props) => {
                 <div className='app_wrapper_content'>
                     <Routes>
                         <Route path='/profile/*' element={<Profile
-                            store={props.store}
+                            state={props.state}
+                            dispatch={props.dispatch}
                         />
                         }/>
                         <Route path='/messages/*' element={<Dialogs
-                            store={props.store}
+                            state={props.state}
+                            dispatch={props.dispatch}
                         />}
                         />
                         <Route path='/news/*' element={<News/>}/>

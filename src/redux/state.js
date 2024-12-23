@@ -28,33 +28,37 @@ let store = {
     getState() {
         return this._state
     },
-    addPost() {
-        debugger
-        let post = {
-            id: 3, postMessage: this._state.profilePage.newTextPost, likesCount: 0, userAvatar: '',
-        }
-        this._state.profilePage.posts.push(post)
-        this._state.profilePage.newTextPost = ''
-        this._callSubscriber()
-    },
-    updateNewTextPost(newText) {
-        this._state.profilePage.newTextPost = newText
-        this._callSubscriber()
-    },
-    addMessage() {
-        let message = {
-            id: 2, message: store._state.dialogsPage.newTextMessage,
-        }
-        this._state.dialogsPage.messages.push(message)
-        this._state.dialogsPage.newTextMessage = ''
-        this._callSubscriber()
-    },
-    updateNewTextMessage(newText) {
-        this._state.dialogsPage.newTextMessage = newText
-        this._callSubscriber()
-    },
     subscribe(observer) {
         this._callSubscriber = observer
+    },
+    dispatch(action) {
+        switch(action.type) {
+            case 'ADD_POST':
+                let post = {
+                    id: 3, postMessage: this._state.profilePage.newTextPost, likesCount: 0, userAvatar: '',
+                }
+                this._state.profilePage.posts.push(post)
+                this._state.profilePage.newTextPost = ''
+                this._callSubscriber()
+                break
+            case 'UPDATE_NEW_TEXT_POST':
+                debugger
+                this._state.profilePage.newTextPost = action.newText
+                this._callSubscriber()
+                break
+            case 'ADD_MESSAGE':
+                let message = {
+                    id: 2, message: store._state.dialogsPage.newTextMessage,
+                }
+                this._state.dialogsPage.messages.push(message)
+                this._state.dialogsPage.newTextMessage = ''
+                this._callSubscriber()
+                break
+            case 'UPDATE_NEW_TEXT_MESSAGE':
+                this._state.dialogsPage.newTextMessage = action.newText
+                this._callSubscriber()
+                break
+        }
     }
 }
 
