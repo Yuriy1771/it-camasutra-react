@@ -9,6 +9,7 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 const App = (props) => {
+    debugger
     return (
         <BrowserRouter>
             <div className="app_wrapper">
@@ -17,14 +18,11 @@ const App = (props) => {
                 <div className='app_wrapper_content'>
                     <Routes>
                         <Route path='/profile/*' element={<Profile
-                            state={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewTextPost={props.updateNewTextPost}/>
+                            store={props.store}
+                        />
                         }/>
                         <Route path='/messages/*' element={<Dialogs
-                            state={props.state.dialogsPage}
-                            addMessage={props.addMessage}
-                            updateNewTextMessage={props.updateNewTextMessage}
+                            store={props.store}
                         />}
                         />
                         <Route path='/news/*' element={<News/>}/>
