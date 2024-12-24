@@ -16,8 +16,8 @@ const Dialogs = (props) => {
         props.dispatch(addMessageAC())
     }
 
-    let onChangeText = () => {
-        let text = newMessageRef.current.value
+    let onChangeText = (event) => {
+        let text = event.currentTarget.value
         props.dispatch(updateNewTextMessageAC(text))
     }
 
@@ -35,7 +35,8 @@ const Dialogs = (props) => {
             <div className={styles.messages}>
                 {componentMessages}
                 <div className={styles.userInputBlock}>
-                    <textarea onChange={onChangeText} ref={newMessageRef} value={props.state.dialogsPage.newTextMessage}/>
+                    <textarea onChange={onChangeText} ref={newMessageRef}
+                              value={props.state.dialogsPage.newTextMessage} placeholder='Enter your message'/>
                     <button onClick={addMessage}>send</button>
                 </div>
             </div>

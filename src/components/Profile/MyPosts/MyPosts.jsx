@@ -7,13 +7,12 @@ const MyPosts = (props) => {
     let componentPosts = props.state.profilePage.posts.map((post) => {
         return <Post message={post.postMessage} likes_count={post.likesCount}/>
     })
-    let newPostRef = React.createRef()
     let addPost = () => {
         props.dispatch(addPostAC())
     }
 
-    let onPostChange = () => {
-        let text = newPostRef.current.value
+    let onPostChange = (event) => {
+        let text = event.currentTarget.value
         props.dispatch(updateNewTextPostAC(text))
     }
 
@@ -21,7 +20,7 @@ const MyPosts = (props) => {
         <div className={styles.myPosts}>
             write post:
             <div className={styles.posts}>
-                <textarea onChange={onPostChange} ref={newPostRef} value={props.state.profilePage.newTextPost}/>
+                <textarea onChange={onPostChange} value={props.state.profilePage.newTextPost}/>
                 <div className={styles.button}>
                     <button onClick={addPost}>add post</button>
                 </div>
