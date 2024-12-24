@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './MyPosts.module.css'
 import Post from './Post/Post'
+import {addPostAC, updateNewTextPostAC} from "../../../redux/state"
 
 const MyPosts = (props) => {
     let componentPosts = props.state.profilePage.posts.map((post) => {
@@ -8,13 +9,12 @@ const MyPosts = (props) => {
     })
     let newPostRef = React.createRef()
     let addPost = () => {
-        props.dispatch({type: 'ADD_POST'})
-        // props.updateNewTextPost('')
+        props.dispatch(addPostAC())
     }
 
     let onPostChange = () => {
         let text = newPostRef.current.value
-        props.dispatch({type : 'UPDATE_NEW_TEXT_POST', newText: text})
+        props.dispatch(updateNewTextPostAC(text))
     }
 
     return (

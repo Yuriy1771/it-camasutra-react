@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem";
-import MessageItem from "./MessageItem/MessageItem";
+import DialogItem from "./DialogItem/DialogItem"
+import MessageItem from "./MessageItem/MessageItem"
+import {addMessageAC, updateNewTextMessageAC} from "../../redux/state"
 
 const Dialogs = (props) => {
     debugger
@@ -12,12 +13,12 @@ const Dialogs = (props) => {
     })
 
     let addMessage = () => {
-        props.dispatch({type: 'ADD_MESSAGE'})
+        props.dispatch(addMessageAC())
     }
 
     let onChangeText = () => {
         let text = newMessageRef.current.value
-        props.dispatch({type: 'UPDATE_NEW_TEXT_MESSAGE', newText: text})
+        props.dispatch(updateNewTextMessageAC(text))
     }
 
     let componentMessages = props.state.dialogsPage.messages.map((message) => {
