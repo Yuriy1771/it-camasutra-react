@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD_POST'
-const UPDATE_NEW_TEXT_POST = 'UPDATE_NEW_TEXT_POST'
-const ADD_MESSAGE = 'ADD_MESSAGE'
-const UPDATE_NEW_TEXT_MESSAGE = 'UPDATE_NEW_TEXT_MESSAGE'
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
 
 let store = {
     _callSubscriber() {},
@@ -37,39 +35,10 @@ let store = {
         this._callSubscriber = observer
     },
     dispatch(action) {
-        switch(action.type) {
-            case ADD_POST:
-                let post = {
-                    id: 3, postMessage: this._state.profilePage.newTextPost, likesCount: 0, userAvatar: '',
-                }
-                this._state.profilePage.posts.push(post)
-                this._state.profilePage.newTextPost = ''
-                this._callSubscriber()
-                break
-            case UPDATE_NEW_TEXT_POST:
-                debugger
-                this._state.profilePage.newTextPost = action.newText
-                this._callSubscriber()
-                break
-            case ADD_MESSAGE:
-                let message = {
-                    id: 2, message: store._state.dialogsPage.newTextMessage,
-                }
-                this._state.dialogsPage.messages.push(message)
-                this._state.dialogsPage.newTextMessage = ''
-                this._callSubscriber()
-                break
-            case UPDATE_NEW_TEXT_MESSAGE:
-                this._state.dialogsPage.newTextMessage = action.newText
-                this._callSubscriber()
-                break
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
     }
 }
-
-export const addPostAC = () => ({type: ADD_POST,})
-export const updateNewTextPostAC = (text) => ({type: UPDATE_NEW_TEXT_POST, newText: text,})
-export const addMessageAC = () => ({type: ADD_MESSAGE,})
-export const updateNewTextMessageAC = (text) => ({type: UPDATE_NEW_TEXT_MESSAGE, newText: text,})
 
 export default store

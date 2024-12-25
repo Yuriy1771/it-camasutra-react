@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './MyPosts.module.css'
 import Post from './Post/Post'
-import {addPostAC, updateNewTextPostAC} from "../../../redux/state"
+import {addPostAC, updateNewTextPostAC} from "../../../redux/profileReducer"
 
 const MyPosts = (props) => {
     let componentPosts = props.state.profilePage.posts.map((post) => {
