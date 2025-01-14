@@ -4,7 +4,7 @@ import store from "./redux/redux-store";
 import ReactDOM from "react-dom/client";
 import React from "react";
 import App from "./App";
-import {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
 
 window.store = store
 const root = ReactDOM.createRoot(document.getElementById('root'));
