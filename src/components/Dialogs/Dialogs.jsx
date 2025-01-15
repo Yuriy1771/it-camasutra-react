@@ -6,7 +6,7 @@ import MessageItem from "./MessageItem/MessageItem"
 const Dialogs = (props) => {
     let newMessageRef = React.createRef()
     let componentDialogs = props.state.dialogs.map((dialog) => {
-        return <DialogItem id={dialog.id} name={dialog.name}/>
+        return <DialogItem id={dialog.id} name={dialog.name} key={dialog.id}/>
 
     })
 
@@ -20,9 +20,7 @@ const Dialogs = (props) => {
     }
 
     let componentMessages = props.state.messages.map((message) => {
-        return <MessageItem
-            message={message.message}
-        />
+        return <MessageItem message={message.message} key={message.id}/>
     })
 
     return (

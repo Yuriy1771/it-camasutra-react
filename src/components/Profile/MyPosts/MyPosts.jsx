@@ -5,7 +5,7 @@ import {addPostAC, updateNewTextPostAC} from "../../../redux/profileReducer"
 
 const MyPosts = (props) => {
     let componentPosts = props.state.posts.map((post) => {
-        return <Post message={post.postMessage} likes_count={post.likesCount}/>
+        return <Post message={post.postMessage} likes_count={post.likesCount} key={post.id}/>
     })
     let onAddPost = () => {
         props.addPost()
