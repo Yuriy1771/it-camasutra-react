@@ -32,29 +32,25 @@ const Friends = (props) => {
     }
     return (
         <div>
-            {props.state.users.map((user) => <div key={user.id}>
-                <span>
+            {props.state.users.map((user) => <div className={styles.userBlock} key={user.id}>
+                <div className={styles.avatarAndIsFollowBlock}>
                     <div>
                         <div><img className={styles.userAvatar} src={user.avatar} alt="img"/></div>
                     </div>
-                    <div>
-                        {user.isFollow ? <button onClick={() => {
-                            props.follow(user.id)
-                        }}>unfollow</button> : <button onClick={() => {
-                            props.unfollow(user.id)
-                        }}>follow</button>}
+                    <div className={styles.isFollowBtn}>
+                        {user.isFollow
+                            ? <button onClick={() => { props.follow(user.id)}} className={styles.unfollow}>unfollow</button>
+                            : <button onClick={() => {props.unfollow(user.id)}} className={styles.follow}>follow</button>}
                     </div>
-                </span>
-                <span>
-                    <span>
+                </div>
+                    <div className={styles.userNameBlock}>
                         <div>{user.name}</div>
                         <div>{user.status}</div>
-                    </span>
-                    <span>
+                    </div>
+                    <div className={styles.userLocation}>
                         <div>{user.location.country}</div>
                         <div>{user.location.city}</div>
-                    </span>
-                </span>
+                    </div>
             </div>)}
         </div>
     )

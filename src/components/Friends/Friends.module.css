@@ -1,4 +1,46 @@
+.userBlock {
+    display: grid;
+    grid-template-areas: "avatar info location";
+    grid-template-columns: 70px 5fr 1fr;
+    border-bottom: 1px solid rgb(179, 182, 123);
+    margin: 10px;
+    padding: 5px;
+}
+
 .userAvatar {
+    grid-area: avatar;
     width: 60px;
     border-radius: 50px;
+}
+
+.userNameBlock {
+    grid-area: info;
+    width: 200px;
+}
+
+.userLocation {
+    grid-area: location;
+    text-align: right;
+}
+
+.isFollowBtn {
+    text-align: center;
+}
+
+.avatarAndIsFollowBlock {
+    text-align: center;
+}
+
+.unfollow {
+    background-color: #fa7b7b;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 0px 5px 1px #9a3939;
+}
+
+.follow {
+    background-color: #5eff5e;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 0px 5px 1px #3aab3a;
 }
