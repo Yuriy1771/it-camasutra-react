@@ -4,17 +4,32 @@ import user_avatar from '../../assets/images/user_avatar.png'
 import axios from "axios";
 
 class Friends extends React.Component {
-
-    constructor(props) {
-        super(props)
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.countUsersOfPage}`)
             .then(response => {
                 this.props.setUsers(
                     response.data.items
                 )
+                this.props.setTotalUsersCount(response.data.totalCount)
             })
     }
+
+    onCurrentPageClick = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.state.countUsersOfPage}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
+    }
+
     render() {
+        let pagesCount = Math.ceil(this.props.state.totalUsersCount / this.props.state.countUsersOfPage)
+        let pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+
+
         return (
             <div>
                 {this.props.state.users.map((user) => <div className={styles.userBlock} key={user.id}>
@@ -43,6 +58,10 @@ class Friends extends React.Component {
                         <div>Kazan</div>
                     </div>
                 </div>)}
+                <div className={styles.pagination}>
+                    {pages.map((page) => <span onClick={() => this.onCurrentPageClick(page)}
+                                               className={this.props.state.currentPage === page && styles.selectedPage}>{page}</span>)}
+                </div>
             </div>
         )
     }
