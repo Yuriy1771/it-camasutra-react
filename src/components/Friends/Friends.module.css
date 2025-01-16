@@ -10,7 +10,7 @@
 .userAvatar {
     grid-area: avatar;
     width: 60px;
-    border-radius: 50px;
+    /*border-radius: 50px;*/
 }
 
 .userNameBlock {
