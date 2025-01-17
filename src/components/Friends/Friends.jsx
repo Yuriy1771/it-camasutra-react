@@ -28,8 +28,6 @@ class Friends extends React.Component {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
-
-
         return (
             <div>
                 {this.props.state.users.map((user) => <div className={styles.userBlock} key={user.id}>
@@ -59,8 +57,8 @@ class Friends extends React.Component {
                     </div>
                 </div>)}
                 <div className={styles.pagination}>
-                    {pages.map((page) => <span onClick={() => this.onCurrentPageClick(page)}
-                                               className={this.props.state.currentPage === page && styles.selectedPage}>{page}</span>)}
+                    {pages.map((page) => <div onClick={() => this.onCurrentPageClick(page)}
+                                               className={this.props.state.currentPage === page ? styles.selectedPage : styles.numberPage}>{page}</div>)}
                 </div>
             </div>
         )
