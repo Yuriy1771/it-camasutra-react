@@ -8,7 +8,6 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     return (
         <div>
             {props.state.users.map((user) => <div className={styles.userBlock} key={user.id}>
