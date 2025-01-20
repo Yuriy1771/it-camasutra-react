@@ -2,12 +2,12 @@ import React from "react";
 import styles from './Friends.module.css'
 import {connect} from "react-redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setPreloaderAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowAC
+    follow,
+    setCurrentPage,
+    setPreloader,
+    setTotalUsersCount,
+    setUsers,
+    unfollow
 } from "../../redux/friendsReducer";
 import axios from "axios";
 import Users from "./Users";
@@ -38,11 +38,11 @@ class FriendsAPIContainer extends React.Component {
 
     render() {
         return <>
-            {this.props.state.isLoader ? <Preloader /> : null}
+            {this.props.state.isLoader ? <Preloader/> : null}
             <Users state={this.props.state} follow={this.props.follow} unfollow={this.props.unfollow}
                    setCurrentPage={this.props.setCurrentPage} setTotalUsersCount={this.props.setTotalUsersCount}
                    onCurrentPageClick={this.onCurrentPageClick}/>
-            </>
+        </>
     }
 }
 
@@ -52,17 +52,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => dispatch(followAC(userId)),
-        unfollow: (userId) => dispatch(unfollowAC(userId)),
-        setUsers: (users) => dispatch(setUsersAC(users)),
-        setCurrentPage: (currentPage) => dispatch(setCurrentPageAC(currentPage)),
-        setTotalUsersCount: (usersCount) => dispatch(setTotalUsersCountAC(usersCount)),
-        setPreloader: (isLoader) => dispatch(setPreloaderAC(isLoader)),
-    }
-}
 
-const FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(FriendsAPIContainer)
+const FriendsContainer = connect(mapStateToProps, {
+    //(...) => store.dispatch(follow(...)
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setPreloader,
+})(FriendsAPIContainer)
 
 export default FriendsContainer

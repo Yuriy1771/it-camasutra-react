@@ -48,11 +48,11 @@ const friendsReducer = (state = initialState, action) => {
     return state
 }
 
-export const followAC = (userId) => ({type: FOLLOW, userId})
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users) => ({type: SET_USERS, users})
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
-export const setTotalUsersCountAC = (usersCount) => ({type: SET_USERS_TOTAL_COUNT, usersCount})
-export const setPreloaderAC = (isLoader) => ({type:SET_PRELOADER, isLoader})
+export const follow = (userId) => ({type: FOLLOW, userId})
+export const unfollow = (userId) => ({type: UNFOLLOW, userId})
+export const setUsers = (users) => ({type: SET_USERS, users})
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_TOTAL_COUNT, usersCount})
+export const setPreloader = (isLoader) => ({type:SET_PRELOADER, isLoader})
 
 export default friendsReducer
