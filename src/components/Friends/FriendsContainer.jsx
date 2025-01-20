@@ -11,7 +11,6 @@ import {
 } from "../../redux/friendsReducer";
 import axios from "axios";
 import Users from "./Users";
-import preloader from '../../assets/images/preloader.svg'
 import Preloader from "../other/Preloader";
 
 class FriendsAPIContainer extends React.Component {
