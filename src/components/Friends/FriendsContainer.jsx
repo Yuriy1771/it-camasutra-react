@@ -10,7 +10,7 @@ import {
     unfollow
 } from "../../redux/friendsReducer";
 import axios from "axios";
-import Users from "./Users";
+import Friends from "./Friends";
 import Preloader from "../other/Preloader";
 
 class FriendsAPIContainer extends React.Component {
@@ -39,9 +39,9 @@ class FriendsAPIContainer extends React.Component {
     render() {
         return <>
             {this.props.state.isLoader ? <Preloader/> : null}
-            <Users state={this.props.state} follow={this.props.follow} unfollow={this.props.unfollow}
-                   setCurrentPage={this.props.setCurrentPage} setTotalUsersCount={this.props.setTotalUsersCount}
-                   onCurrentPageClick={this.onCurrentPageClick}/>
+            <Friends state={this.props.state} follow={this.props.follow} unfollow={this.props.unfollow}
+                     setCurrentPage={this.props.setCurrentPage} setTotalUsersCount={this.props.setTotalUsersCount}
+                     onCurrentPageClick={this.onCurrentPageClick}/>
         </>
     }
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from "./Friends.module.css";
 import user_avatar from "../../assets/images/user_avatar.png";
+import {NavLink} from "react-router-dom";
 
-const Users = (props) => {
+const Friends = (props) => {
     let pagesCount = Math.ceil(props.state.totalUsersCount / props.state.countUsersOfPage)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -13,9 +14,13 @@ const Users = (props) => {
             {props.state.users.map((user) => <div className={styles.userBlock} key={user.id}>
                 <div className={styles.avatarAndIsFollowBlock}>
                     <div>
-                        <div><img className={styles.userAvatar} src={user.photos.small != null
-                            ? user.photos.small
-                            : user_avatar} alt="img"/></div>
+                        <div>
+                            <NavLink to={`/profile/${user.id}`}>
+                                <img className={styles.userAvatar} src={user.photos.small != null
+                                    ? user.photos.small
+                                    : user_avatar} alt="img"/>
+                            </NavLink>
+                        </div>
                     </div>
                     <div className={styles.isFollowBtn}>
                         {user.followed
@@ -44,4 +49,4 @@ const Users = (props) => {
     )
 }
 
-export default Users
+export default Friends
