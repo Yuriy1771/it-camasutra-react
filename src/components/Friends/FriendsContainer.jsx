@@ -1,5 +1,4 @@
 import React from "react";
-import styles from './Friends.module.css'
 import {connect} from "react-redux";
 import {
     follow,
@@ -9,33 +8,27 @@ import {
     setUsers,
     unfollow
 } from "../../redux/friendsReducer";
-import axios from "axios";
 import Friends from "./Friends";
 import Preloader from "../other/Preloader";
+import {usersAPI} from "../../api/api";
 
 class FriendsAPIContainer extends React.Component {
     componentDidMount() {
         this.props.setPreloader(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.countUsersOfPage}`, {
-            withCredentials: true,
+        usersAPI.getUsersAPI(this.props.currentPage, this.props.countUsersOfPage).then(data => {
+            this.props.setUsers(data.items)
+            this.props.setPreloader(false)
+            this.props.setTotalUsersCount(data.totalCount)
         })
-            .then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.setPreloader(false)
-                this.props.setTotalUsersCount(response.data.totalCount)
-            })
     }
 
     onCurrentPageClick = (pageNumber) => {
         this.props.setPreloader(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.state.countUsersOfPage}`, {
-            withCredentials: true,
+        usersAPI.getUsersAPI(pageNumber, this.props.state.countUsersOfPage).then(data => {
+            this.props.setUsers(data.items)
+            this.props.setPreloader(false)
         })
-            .then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.setPreloader(false)
-            })
     }
 
     render() {
@@ -43,7 +36,7 @@ class FriendsAPIContainer extends React.Component {
             {this.props.state.isLoader ? <Preloader/> : null}
             <Friends state={this.props.state} follow={this.props.follow} unfollow={this.props.unfollow}
                      setCurrentPage={this.props.setCurrentPage} setTotalUsersCount={this.props.setTotalUsersCount}
-                     onCurrentPageClick={this.onCurrentPageClick} />
+                     onCurrentPageClick={this.onCurrentPageClick}/>
         </>
     }
 }
