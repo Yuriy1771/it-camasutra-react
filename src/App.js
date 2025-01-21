@@ -8,12 +8,13 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = (props) => {
     return (
         <BrowserRouter>
             <div className="app_wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className='app_wrapper_content'>
                     <Routes>

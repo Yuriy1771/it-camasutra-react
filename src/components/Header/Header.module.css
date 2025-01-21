@@ -2,9 +2,13 @@
     grid-area: header;
     background-color: yellow;
     border: 1px solid black;
-     text-align: center;
-  }
-  .header .logo_website {
-    width: 60px; 
-  }
-  
+    text-align: center;
+}
+
+.header .logo_website {
+    width: 60px;
+}
+
+.loginWrapper {
+    float: right;
+}
