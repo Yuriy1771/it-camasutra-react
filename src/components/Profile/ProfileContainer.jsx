@@ -3,12 +3,14 @@ import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profileReducer";
+import {useParams} from "react-router";
 
 //26083 my id
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let defaultUrl = this.props.clickedUserOpen === 0 ? 26083 : this.props.clickedUserOpen
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${defaultUrl}`)
+        let userId = this.props.param.userId
+        if(!userId) userId = 26083
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 this.props.setUserProfile(response.data)
             })
@@ -25,10 +27,13 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        clickedUserOpen: state.friendsPage.clickUserId,
     }
+}
+
+const GetParams = (props) => {
+    return <ProfileContainer {...props} param={useParams()}/>
 }
 
 export default connect(mapStateToProps, {
     setUserProfile,
-})(ProfileContainer)
+})(GetParams)
