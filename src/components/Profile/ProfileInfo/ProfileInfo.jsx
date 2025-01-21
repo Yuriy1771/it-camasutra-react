@@ -5,18 +5,20 @@ import user_avatar_img from "../../../images/user_avatar.jpeg";
 import Preloader from "../../other/Preloader";
 
 const ProfileInfo = (props) => {
-    if(!props.profile) {return <><Preloader/></> }
+    if (!props.profile) {
+        return <><Preloader/></>
+    }
     return (
         <div>
-            <div>
-                <img src={user_shapka_img} className={styles.user_shapka} alt='shapka user'/>
-                <div>
+            <img src={user_shapka_img} className={styles.user_shapka} alt='shapka user'/>
+            <div className={styles.wrapperInfo}>
+                <div className={styles.wrapperName}>
                     <span>{props.profile.fullName}</span>
                     <span>{props.profile.status}</span>
                 </div>
-            </div>
-            <div className={styles.descriptionBlock}>
-                <img src={user_avatar_img} className={styles.user_avatar} alt='user avatar'/>
+                <div className={styles.wrapperAvatar}>
+                    <img src={user_avatar_img} className={styles.user_avatar} alt='user avatar'/>
+                </div>
             </div>
         </div>
     )

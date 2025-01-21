@@ -8,7 +8,7 @@ let initialState = {
         {id: 2, postMessage: 'Why doesn\'t my friend answer me?', likesCount: 10, userAvatar: '',},
     ],
     profile: [],
-    newTextPost: ''
+    newTextPost: '',
 }
 
 const profileReducer = (state = initialState, action) => {

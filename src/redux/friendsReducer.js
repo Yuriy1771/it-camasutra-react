@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT'
 const SET_PRELOADER = 'SET_PRELOADER'
+const SET_USER_ID = 'SET_USER_ID'
 
 let initialState = {
     users: [],
@@ -11,6 +12,7 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isLoader: true,
+    clickUserId: 0,
 }
 
 const friendsReducer = (state = initialState, action) => {
@@ -44,6 +46,8 @@ const friendsReducer = (state = initialState, action) => {
             return stateCopy = {...state, currentPage: action.currentPage}
         case SET_PRELOADER:
             return stateCopy = {...state, isLoader: action.isLoader}
+        case SET_USER_ID:
+            return stateCopy = {...state, clickUserId: action.clickUserId}
     }
     return state
 }
@@ -53,6 +57,7 @@ export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_TOTAL_COUNT, usersCount})
-export const setPreloader = (isLoader) => ({type:SET_PRELOADER, isLoader})
+export const setPreloader = (isLoader) => ({type: SET_PRELOADER, isLoader})
+export const setUserId = (clickUserId) => ({type: SET_USER_ID, clickUserId})
 
 export default friendsReducer

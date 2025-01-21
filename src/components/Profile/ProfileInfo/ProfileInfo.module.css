@@ -1,3 +1,19 @@
+.wrapperInfo {
+    display: grid;
+    grid-template-areas: 'avatar name';
+    grid-template-columns: 1fr 5fr;
+}
+
+.wrapperAvatar {
+    grid-area: avatar;
+}
+
+.wrapperName {
+    grid-area: name;
+    padding-left: 5px;
+    font-size: 17px;
+}
+
 .user_shapka {
     width: 1000px;
     height: 250px;

@@ -16,7 +16,7 @@ const Friends = (props) => {
                     <div>
                         <div>
                             <NavLink to={`/profile/${user.id}`}>
-                                <img className={styles.userAvatar} src={user.photos.small != null
+                                <img className={styles.userAvatar} onClick={() => props.setUserId(user.id)} src={user.photos.small != null
                                     ? user.photos.small
                                     : user_avatar} alt="img"/>
                             </NavLink>
