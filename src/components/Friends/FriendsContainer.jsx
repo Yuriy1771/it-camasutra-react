@@ -16,11 +16,11 @@ import Preloader from "../other/Preloader";
 class FriendsAPIContainer extends React.Component {
     componentDidMount() {
         this.props.setPreloader(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.countUsersOfPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.countUsersOfPage}`, {
+            withCredentials: true,
+        })
             .then(response => {
-                this.props.setUsers(
-                    response.data.items
-                )
+                this.props.setUsers(response.data.items)
                 this.props.setPreloader(false)
                 this.props.setTotalUsersCount(response.data.totalCount)
             })
@@ -29,7 +29,9 @@ class FriendsAPIContainer extends React.Component {
     onCurrentPageClick = (pageNumber) => {
         this.props.setPreloader(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.state.countUsersOfPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.state.countUsersOfPage}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.setPreloader(false)
