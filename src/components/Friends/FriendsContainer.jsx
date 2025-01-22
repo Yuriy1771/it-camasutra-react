@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {
     follow,
-    setCurrentPage,
+    setCurrentPage, setIsDisabledFollow,
     setPreloader,
     setTotalUsersCount,
     setUsers,
@@ -36,7 +36,7 @@ class FriendsAPIContainer extends React.Component {
             {this.props.state.isLoader ? <Preloader/> : null}
             <Friends state={this.props.state} follow={this.props.follow} unfollow={this.props.unfollow}
                      setCurrentPage={this.props.setCurrentPage} setTotalUsersCount={this.props.setTotalUsersCount}
-                     onCurrentPageClick={this.onCurrentPageClick}/>
+                     onCurrentPageClick={this.onCurrentPageClick} setIsDisabledFollow={this.props.setIsDisabledFollow}/>
         </>
     }
 }
@@ -56,6 +56,7 @@ const FriendsContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     setPreloader,
+    setIsDisabledFollow,
 })(FriendsAPIContainer)
 
 export default FriendsContainer

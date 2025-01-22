@@ -14,20 +14,24 @@ const Friends = (props) => {
 
 
     const onClickFollow = (id) => {
+        props.setIsDisabledFollow(true, id)
         usersAPI.unfollowAPI(id).then(data => {
             console.log(data)
                 if(data.resultCode === 0) {
                     props.follow(id)
                 }
+            props.setIsDisabledFollow(false, id)
             })
     }
 
     const onClickUnfollow = (id) => {
+        props.setIsDisabledFollow(true, id)
             usersAPI.followAPI(id).then(data => {
                 console.log(data)
                 if (data.resultCode === 0) {
                     props.unfollow(id)
                 }
+                    props.setIsDisabledFollow(false, id)
             })
 
     }
@@ -48,9 +52,11 @@ const Friends = (props) => {
                     <div className={styles.isFollowBtn}>
                         {user.followed
                             ?
-                            <button onClick={() => onClickFollow(user.id)} className={styles.unfollow}>unfollow</button>
+                            <button disabled={props.state.isDisabledFollow.some(id => id === user.id)}
+                                    onClick={() => onClickFollow(user.id)} className={styles.unfollow}>unfollow</button>
                             :
-                            <button onClick={() => onClickUnfollow(user.id)} className={styles.follow}>follow</button>}
+                            <button disabled={props.state.isDisabledFollow.some(id => id === user.id)}
+                                    onClick={() => onClickUnfollow(user.id)} className={styles.follow}>follow</button>}
                     </div>
                 </div>
                 <div className={styles.userNameBlock}>
