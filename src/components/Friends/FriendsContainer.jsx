@@ -1,42 +1,26 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    follow,
-    setCurrentPage, setIsDisabledFollow,
-    setPreloader,
-    setTotalUsersCount,
-    setUsers,
-    unfollow
+    followThunk, getUsersThunk,
+    unfollowThunk
 } from "../../redux/friendsReducer";
 import Friends from "./Friends";
 import Preloader from "../other/Preloader";
-import {usersAPI} from "../../api/api";
 
 class FriendsAPIContainer extends React.Component {
     componentDidMount() {
-        this.props.setPreloader(true)
-        usersAPI.getUsersAPI(this.props.currentPage, this.props.countUsersOfPage).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setPreloader(false)
-            this.props.setTotalUsersCount(data.totalCount)
-        })
+        this.props.getUsersThunk(this.props.state.currentPage, this.props.state.countUsersOfPage)
     }
 
     onCurrentPageClick = (pageNumber) => {
-        this.props.setPreloader(true)
-        this.props.setCurrentPage(pageNumber)
-        usersAPI.getUsersAPI(pageNumber, this.props.state.countUsersOfPage).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setPreloader(false)
-        })
+        this.props.getUsersThunk(pageNumber, this.props.state.countUsersOfPage)
     }
 
     render() {
         return <>
             {this.props.state.isLoader ? <Preloader/> : null}
-            <Friends state={this.props.state} follow={this.props.follow} unfollow={this.props.unfollow}
-                     setCurrentPage={this.props.setCurrentPage} setTotalUsersCount={this.props.setTotalUsersCount}
-                     onCurrentPageClick={this.onCurrentPageClick} setIsDisabledFollow={this.props.setIsDisabledFollow}/>
+            <Friends state={this.props.state} onCurrentPageClick={this.onCurrentPageClick}
+                     followThunk={this.props.followThunk} unfollowThunk={this.props.unfollowThunk}/>
         </>
     }
 }
@@ -50,13 +34,9 @@ const mapStateToProps = (state) => {
 
 const FriendsContainer = connect(mapStateToProps, {
     //(...) => store.dispatch(follow(...)
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setPreloader,
-    setIsDisabledFollow,
+    getUsersThunk,
+    followThunk,
+    unfollowThunk,
 })(FriendsAPIContainer)
 
 export default FriendsContainer

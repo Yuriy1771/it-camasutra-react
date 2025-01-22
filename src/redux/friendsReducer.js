@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -47,9 +49,11 @@ const friendsReducer = (state = initialState, action) => {
         case SET_PRELOADER:
             return stateCopy = {...state, isLoader: action.isLoader}
         case IS_DISABLED_FOLLOW:
-            return stateCopy = {...state, isDisabledFollow: action.isDisabledFollow
-                    ?[...state.isDisabledFollow, action.id]
-                    : state.isDisabledFollow.filter(id => id != action.id)}
+            return stateCopy = {
+                ...state, isDisabledFollow: action.isDisabledFollow
+                    ? [...state.isDisabledFollow, action.id]
+                    : state.isDisabledFollow.filter(id => id != action.id)
+            }
     }
     return state
 }
@@ -61,5 +65,35 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_TOTAL_COUNT, usersCount})
 export const setPreloader = (isLoader) => ({type: SET_PRELOADER, isLoader})
 export const setIsDisabledFollow = (isDisabledFollow, id) => ({type: IS_DISABLED_FOLLOW, isDisabledFollow, id})
+
+export const getUsersThunk = (currentPage, countUsersOfPage) => (dispatch) => {
+    dispatch(setPreloader(true))
+    usersAPI.getUsersAPI(currentPage, countUsersOfPage).then(data => {
+        dispatch(setPreloader(false))
+        dispatch(setCurrentPage(currentPage))
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+    })
+}
+
+export const followThunk = (id) => (dispatch) => {
+    dispatch(setIsDisabledFollow(true, id))
+    usersAPI.unfollowAPI(id).then(data => {
+        if(data.resultCode === 0) {
+            dispatch(follow(id))
+        }
+        dispatch(setIsDisabledFollow(false, id))
+    })
+}
+
+export const unfollowThunk = (id) => (dispatch) => {
+    dispatch(setIsDisabledFollow(true, id))
+    usersAPI.followAPI(id).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(unfollow(id))
+        }
+        dispatch(setIsDisabledFollow(false, id))
+    })
+}
 
 export default friendsReducer

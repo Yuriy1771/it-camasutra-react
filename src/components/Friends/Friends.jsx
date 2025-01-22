@@ -2,8 +2,6 @@ import React from 'react'
 import styles from "./Friends.module.css";
 import user_avatar from "../../assets/images/user_avatar.png";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
 
 const Friends = (props) => {
     let pagesCount = Math.ceil(props.state.totalUsersCount / props.state.countUsersOfPage)
@@ -14,26 +12,11 @@ const Friends = (props) => {
 
 
     const onClickFollow = (id) => {
-        props.setIsDisabledFollow(true, id)
-        usersAPI.unfollowAPI(id).then(data => {
-            console.log(data)
-                if(data.resultCode === 0) {
-                    props.follow(id)
-                }
-            props.setIsDisabledFollow(false, id)
-            })
+        props.followThunk(id)
     }
 
     const onClickUnfollow = (id) => {
-        props.setIsDisabledFollow(true, id)
-            usersAPI.followAPI(id).then(data => {
-                console.log(data)
-                if (data.resultCode === 0) {
-                    props.unfollow(id)
-                }
-                    props.setIsDisabledFollow(false, id)
-            })
-
+        props.unfollowThunk(id)
     }
 
     return (
