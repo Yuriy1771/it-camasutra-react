@@ -22,6 +22,7 @@ const mstp = (state) => {
     return {
         login: state.auth.login,
         isAuth: state.auth.isAuth,
+        profile: state.profilePage.profile
     }
 }
 

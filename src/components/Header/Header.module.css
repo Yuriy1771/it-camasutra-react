@@ -11,4 +11,24 @@
 
 .loginWrapper {
     float: right;
+    display: grid;
+    grid-template-areas: 'login img';
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapperAvatar {
+}
+
+.imgUserHeader {
+    grid-area: img;
+    width: 58px;
+    margin: auto;
+    border-radius: 5px;
+
+}
+
+.loginUserHeader {
+    grid-area: login;
+    margin-right: 5px;
 }

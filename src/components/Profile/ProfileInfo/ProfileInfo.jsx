@@ -5,7 +5,7 @@ import user_avatar_img from "../../../images/user_avatar.jpeg";
 import Preloader from "../../other/Preloader";
 
 const ProfileInfo = (props) => {
-    if (!props.profile) {
+    if (props.profile == '') {
         return <><Preloader/></>
     }
     return (
@@ -13,11 +13,11 @@ const ProfileInfo = (props) => {
             <img src={user_shapka_img} className={styles.user_shapka} alt='shapka user'/>
             <div className={styles.wrapperInfo}>
                 <div className={styles.wrapperName}>
-                    <span>{props.profile.fullName}</span>
-                    <span>{props.profile.status}</span>
+                    <div>{props.profile.fullName}</div>
+                    <div>{props.profile.aboutMe}</div>
                 </div>
                 <div className={styles.wrapperAvatar}>
-                    <img src={user_avatar_img} className={styles.user_avatar} alt='user avatar'/>
+                    <img src={props.profile.photos.large ? props.profile.photos.large : user_avatar_img} className={styles.user_avatar} alt='user avatar'/>
                 </div>
             </div>
         </div>
