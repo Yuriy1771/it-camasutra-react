@@ -2,10 +2,12 @@
     display: grid;
     grid-template-areas: 'avatar name';
     grid-template-columns: 1fr 5fr;
+    margin-top: 5px;
 }
 
 .wrapperAvatar {
     grid-area: avatar;
+
 }
 
 .wrapperName {
