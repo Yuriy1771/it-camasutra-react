@@ -1,11 +1,10 @@
 import React from 'react'
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {getProfileAPIThunk, setUserProfile} from "../../redux/profileReducer";
 import {useParams} from "react-router";
-import {profileAPI} from "../../api/api";
-import {Navigate} from "react-router-dom";
+import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 //26083 my id
 class ProfileContainer extends React.Component {
@@ -16,7 +15,6 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        if (!this.props.isAuth) return <Navigate to={'/login'}/>
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
@@ -27,7 +25,6 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth,
     }
 }
 
@@ -35,7 +32,10 @@ const GetParams = (props) => {
     return <ProfileContainer {...props} param={useParams()}/>
 }
 
-export default connect(mapStateToProps, {
-    setUserProfile,
-    getProfileAPIThunk,
-})(GetParams)
+export default compose(
+    connect(mapStateToProps, {
+        setUserProfile,
+        getProfileAPIThunk,
+    }),
+    WithAuthRedirect,
+)(GetParams)

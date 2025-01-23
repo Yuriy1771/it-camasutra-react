@@ -6,6 +6,8 @@ import {
 } from "../../redux/friendsReducer";
 import Friends from "./Friends";
 import Preloader from "../other/Preloader";
+import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 class FriendsAPIContainer extends React.Component {
     componentDidMount() {
@@ -32,11 +34,13 @@ const mapStateToProps = (state) => {
 }
 
 
-const FriendsContainer = connect(mapStateToProps, {
-    //(...) => store.dispatch(follow(...)
-    getUsersThunk,
-    followThunk,
-    unfollowThunk,
-})(FriendsAPIContainer)
 
-export default FriendsContainer
+export default compose(
+    connect(mapStateToProps, {
+        //(...) => store.dispatch(follow(...)
+        getUsersThunk,
+        followThunk,
+        unfollowThunk,
+    }),
+    WithAuthRedirect,
+)(FriendsAPIContainer)

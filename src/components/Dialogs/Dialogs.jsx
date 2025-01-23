@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem"
 import MessageItem from "./MessageItem/MessageItem"
-import {Navigate} from "react-router-dom";
 
 const Dialogs = (props) => {
     let newMessageRef = React.createRef()
@@ -24,7 +23,6 @@ const Dialogs = (props) => {
         return <MessageItem message={message.message} key={message.id}/>
     })
 
-    if(!props.isAuth) return <Navigate to={'/login'}/>
     return (
         <div className={styles.message_window}>
             <div className={styles.dialogs}>
