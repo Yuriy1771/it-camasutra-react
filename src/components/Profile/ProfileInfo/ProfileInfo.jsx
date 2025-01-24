@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
                 <div className={styles.wrapperName}>
                     <div>{props.profile.fullName}</div>
                     <div>{props.profile.aboutMe}</div>
-                    <div><ProfileStatus status={'lol'}/></div>
+                    <div><ProfileStatus status={props.status} updateProfileStatusThunk={props.updateProfileStatusThunk}/></div>
                 </div>
                 <div className={styles.wrapperAvatar}>
                     <img src={props.profile.photos.large ? props.profile.photos.large : user_avatar_img}
