@@ -1,5 +1,4 @@
 import React from 'react'
-import {updateProfileStatusThunk} from "../../../../redux/profileReducer";
 
 class ProfileStatus extends React.Component {
     state = {
@@ -18,6 +17,14 @@ class ProfileStatus extends React.Component {
         this.setState({status: status})
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status,
+            })
+        }
+    }
+
     render() {
         return (
             <>
@@ -26,7 +33,8 @@ class ProfileStatus extends React.Component {
                         <input autoFocus={true} onChange={this.onChangeStatus}
                                onBlur={this.deactivateMode} type='text' value={this.state.status}/>
                     </div>
-                    : <div><span onDoubleClick={this.activateEditMode}>{this.props.status || 'change status'}</span></div>}
+                    :
+                    <div><span onDoubleClick={this.activateEditMode}>{this.props.status || 'write status'}</span></div>}
             </>
         )
     }

@@ -12,7 +12,7 @@ let initialState = {
     ],
     profile: [],
     newTextPost: '',
-    status: null,
+    status: '',
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -56,14 +56,14 @@ export const getProfileAPIThunk = (userId) => (dispatch) => {
 }
 
 export const getProfileStatusThunk = (id) => (dispatch) => {
-    profileAPI.getProfileStatusAPI(id).then(response => {
-        dispatch(setProfileStatus(response.data))
+    profileAPI.getProfileStatusAPI(id).then(data => {
+        dispatch(setProfileStatus(data))
     })
 }
 
 export const updateProfileStatusThunk = (status) => (dispatch) => {
-    profileAPI.updateProfileStatusAPI(status).then(response => {
-        if (response.data.resultCode === 0) {
+    profileAPI.updateProfileStatusAPI(status).then(data => {
+        if (data.resultCode === 0) {
             dispatch(setProfileStatus(status))
         }
     })
