@@ -32,3 +32,14 @@
     grid-area: login;
     margin-right: 5px;
 }
+
+.logout {
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.logout:hover {
+    color: #524800;
+}

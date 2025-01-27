@@ -19,7 +19,6 @@ const Dialogs = (props) => {
 
     const onSubmit = (formData) => {
         props.addMessage(formData.newTextMessage)
-        console.log(formData)
     }
     return (
         <div className={styles.message_window}>
