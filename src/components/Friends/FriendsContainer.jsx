@@ -5,7 +5,7 @@ import {
     unfollowThunk
 } from "../../redux/friendsReducer";
 import Friends from "./Friends";
-import Preloader from "../other/Preloader";
+import Preloader from "../other/Preloader/Preloader";
 import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";
 
