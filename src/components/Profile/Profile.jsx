@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {updateProfileStatusThunk} from "../../redux/profileReducer";
 
 const Profile = (props) => {
     return (

@@ -1,29 +1,25 @@
 import React from 'react'
 import styles from './MyPosts.module.css'
 import Post from './Post/Post'
-import {addPostAC, updateNewTextPostAC} from "../../../redux/profileReducer"
+import AddPostForm from "./addPostForm";
+import {reduxForm} from "redux-form";
+
+const AddPostFormRedux = reduxForm({form: 'newTextPost'})(AddPostForm)
 
 const MyPosts = (props) => {
     let componentPosts = props.state.posts.map((post) => {
         return <Post message={post.postMessage} likes_count={post.likesCount} key={post.id}/>
     })
-    let onAddPost = () => {
-        props.addPost()
-    }
 
-    let onPostChange = (event) => {
-        let text = event.currentTarget.value
-        props.updateNewPostText(text)
+    const onSubmit = (formData) => {
+        props.addPost(formData.newTextPost)
     }
 
     return (
         <div className={styles.myPosts}>
             write post:
             <div className={styles.posts}>
-                <textarea onChange={onPostChange} value={props.state.newTextPost}/>
-                <div className={styles.button}>
-                    <button onClick={onAddPost}>add post</button>
-                </div>
+                <AddPostFormRedux onSubmit={onSubmit} />
                 <span>My posts:</span>
                 {componentPosts}
             </div>
