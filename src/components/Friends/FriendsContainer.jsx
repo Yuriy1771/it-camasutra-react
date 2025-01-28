@@ -13,7 +13,7 @@ import {
     getIsDisabledFollow,
     getIsLoader,
     getTotalUsersCount,
-    getUsers
+    getUsersSelector
 } from "../../redux/selectors/friendsSelector";
 
 class FriendsAPIContainer extends React.Component {
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
         isLoader: getIsLoader(state),
         totalUsersCount: getTotalUsersCount(state),
         countUsersOfPage: getCountUsersOfPage(state),
-        users: getUsers(state),
+        users: getUsersSelector(state),
         isDisabledFollow: getIsDisabledFollow(state),
         currentPage: getCurrentPage(state),
     }
