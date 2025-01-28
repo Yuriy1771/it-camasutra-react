@@ -4,7 +4,7 @@ import user_avatar from "../../assets/images/user_avatar.png";
 import {NavLink} from "react-router-dom";
 
 const Friends = (props) => {
-    let pagesCount = Math.ceil(props.state.totalUsersCount / props.state.countUsersOfPage)
+    let pagesCount = Math.ceil(props.totalUsersCount / props.countUsersOfPage)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
@@ -21,7 +21,7 @@ const Friends = (props) => {
 
     return (
         <div>
-            {props.state.users.map((user) => <div className={styles.userBlock} key={user.id}>
+            {props.users.map((user) => <div className={styles.userBlock} key={user.id}>
                 <div className={styles.avatarAndIsFollowBlock}>
                     <div>
                         <div>
@@ -35,10 +35,10 @@ const Friends = (props) => {
                     <div className={styles.isFollowBtn}>
                         {user.followed
                             ?
-                            <button disabled={props.state.isDisabledFollow.some(id => id === user.id)}
+                            <button disabled={props.isDisabledFollow.some(id => id === user.id)}
                                     onClick={() => onClickFollow(user.id)} className={styles.unfollow}>unfollow</button>
                             :
-                            <button disabled={props.state.isDisabledFollow.some(id => id === user.id)}
+                            <button disabled={props.isDisabledFollow.some(id => id === user.id)}
                                     onClick={() => onClickUnfollow(user.id)} className={styles.follow}>follow</button>}
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const Friends = (props) => {
             </div>)}
             <div className={styles.pagination}>
                 {pages.map((page) => <div onClick={() => props.onCurrentPageClick(page)}
-                                          className={props.state.currentPage === page ? styles.selectedPage : styles.numberPage}>{page}</div>)}
+                                          className={props.currentPage === page ? styles.selectedPage : styles.numberPage}>{page}</div>)}
             </div>
         </div>
     )

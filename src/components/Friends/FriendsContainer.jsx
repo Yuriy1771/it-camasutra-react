@@ -8,32 +8,45 @@ import Friends from "./Friends";
 import Preloader from "../other/Preloader/Preloader";
 import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getCountUsersOfPage, getCurrentPage,
+    getIsDisabledFollow,
+    getIsLoader,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/selectors/friendsSelector";
 
 class FriendsAPIContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsersThunk(this.props.state.currentPage, this.props.state.countUsersOfPage)
+        this.props.getUsersThunk(this.props.currentPage, this.props.countUsersOfPage)
     }
 
     onCurrentPageClick = (pageNumber) => {
-        this.props.getUsersThunk(pageNumber, this.props.state.countUsersOfPage)
+        this.props.getUsersThunk(pageNumber, this.countUsersOfPage)
     }
 
     render() {
         return <>
-            {this.props.state.isLoader ? <Preloader/> : null}
-            <Friends state={this.props.state} onCurrentPageClick={this.onCurrentPageClick}
-                     followThunk={this.props.followThunk} unfollowThunk={this.props.unfollowThunk}/>
+            {this.props.isLoader ? <Preloader/> : null}
+            <Friends users={this.props.users} isDisabledFollow={this.props.isDisabledFollow}
+                     onCurrentPageClick={this.onCurrentPageClick} currentPage={this.props.currentPage}
+                     followThunk={this.props.followThunk} unfollowThunk={this.props.unfollowThunk}
+                     totalUsersCount={this.props.totalUsersCount} countUsersOfPage={this.props.countUsersOfPage}
+            />
         </>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        state: state.friendsPage,
+        isLoader: getIsLoader(state),
+        totalUsersCount: getTotalUsersCount(state),
+        countUsersOfPage: getCountUsersOfPage(state),
+        users: getUsers(state),
+        isDisabledFollow: getIsDisabledFollow(state),
+        currentPage: getCurrentPage(state),
     }
 }
-
-
 
 export default compose(
     connect(mapStateToProps, {
