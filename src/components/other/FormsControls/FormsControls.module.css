@@ -7,6 +7,10 @@
     color: red;
 }
 
+.formSummaryError {
+    color: red;
+}
+
 .wrapperTextarea textarea {
     width: 500px;
     height: 44px;
