@@ -6,7 +6,8 @@ import {reduxForm} from "redux-form";
 
 const AddPostFormRedux = reduxForm({form: 'newTextPost'})(AddPostForm)
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+    console.log('render')
     let componentPosts = props.state.posts.map((post) => {
         return <Post message={post.postMessage} likes_count={post.likesCount} key={post.id}/>
     })
@@ -14,17 +15,16 @@ const MyPosts = (props) => {
     const onSubmit = (formData) => {
         props.addPost(formData.newTextPost)
     }
-
     return (
         <div className={styles.myPosts}>
             write post:
             <div className={styles.posts}>
-                <AddPostFormRedux onSubmit={onSubmit} />
+                <AddPostFormRedux onSubmit={onSubmit}/>
                 <span>My posts:</span>
                 {componentPosts}
             </div>
         </div>
     )
-};
+});
 
 export default MyPosts
