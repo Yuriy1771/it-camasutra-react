@@ -18,11 +18,13 @@ import {
 
 class FriendsAPIContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsersThunk(this.props.currentPage, this.props.countUsersOfPage)
+        const {currentPage, countUsersOfPage} = this.props
+        this.props.getUsersThunk(currentPage, countUsersOfPage)
     }
 
     onCurrentPageClick = (pageNumber) => {
-        this.props.getUsersThunk(pageNumber, this.countUsersOfPage)
+        const {countUsersOfPage} = this.props
+        this.props.getUsersThunk(pageNumber, countUsersOfPage)
     }
 
     render() {

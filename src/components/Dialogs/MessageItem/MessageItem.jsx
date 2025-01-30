@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './MessageItem.module.css'
 
-const MessageItem = (props) => {
+const MessageItem = ({message}) => {
     return (
         <div className={styles.messagesWindow}>
-                {props.message}
+                {message}
         </div>
     )
 }

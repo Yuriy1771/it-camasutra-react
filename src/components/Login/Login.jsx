@@ -7,12 +7,12 @@ import {Navigate} from "react-router-dom";
 
 const LoginFormRedux = reduxForm({form: 'login',})(LoginForm)
 
-const Login = (props) => {
+const Login = ({loginThunk, isAuth}) => {
     const onSubmit = (formData) => {
-        props.loginThunk(formData.email, formData.password, formData.rememberMe)
+        loginThunk(formData.email, formData.password, formData.rememberMe)
     }
 
-    if(props.isAuth) {
+    if(isAuth) {
         return <Navigate to={'/profile'}/>
     }
     return (

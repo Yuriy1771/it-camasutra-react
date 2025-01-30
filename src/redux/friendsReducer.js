@@ -1,12 +1,13 @@
 import {usersAPI} from "../api/api";
+import {updateObjectInArray} from "../utils/helpers/objectHelpers";
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT'
-const SET_PRELOADER = 'SET_PRELOADER'
-const IS_DISABLED_FOLLOW = 'IS_DISABLED_FOLLOW'
+const FOLLOW = 'friends/FOLLOW'
+const UNFOLLOW = 'friends/UNFOLLOW'
+const SET_USERS = 'friends/SET_USERS'
+const SET_CURRENT_PAGE = 'friends/SET_CURRENT_PAGE'
+const SET_USERS_TOTAL_COUNT = 'friends/SET_USERS_TOTAL_COUNT'
+const SET_PRELOADER = 'friends/SET_PRELOADER'
+const IS_DISABLED_FOLLOW = 'friends/IS_DISABLED_FOLLOW'
 
 let initialState = {
     users: [],
@@ -23,22 +24,12 @@ const friendsReducer = (state = initialState, action) => {
         case FOLLOW:
             return stateCopy = {
                 ...state,
-                users: state.users.map((user) => {
-                    if (user.id === action.userId) {
-                        return {...user, followed: false}
-                    }
-                    return user
-                })
+                users: updateObjectInArray(state.users, action.userId,{followed: true})
             }
         case UNFOLLOW:
             return stateCopy = {
                 ...state,
-                users: state.users.map((user) => {
-                    if (user.id === action.userId) {
-                        return {...user, followed: true}
-                    }
-                    return user
-                })
+                users: updateObjectInArray(state.users, action.userId,{followed: false})
             }
         case SET_USERS:
             return stateCopy = {...state, users: action.users,}
@@ -52,7 +43,7 @@ const friendsReducer = (state = initialState, action) => {
             return stateCopy = {
                 ...state, isDisabledFollow: action.isDisabledFollow
                     ? [...state.isDisabledFollow, action.id]
-                    : state.isDisabledFollow.filter(id => id != action.id)
+                    : state.isDisabledFollow.filter(id => id !== action.id)
             }
     }
     return state
@@ -66,34 +57,30 @@ export const setTotalUsersCount = (usersCount) => ({type: SET_USERS_TOTAL_COUNT,
 export const setPreloader = (isLoader) => ({type: SET_PRELOADER, isLoader})
 export const setIsDisabledFollow = (isDisabledFollow, id) => ({type: IS_DISABLED_FOLLOW, isDisabledFollow, id})
 
-export const getUsersThunk = (currentPage, countUsersOfPage) => (dispatch) => {
+export const getUsersThunk = (currentPage, countUsersOfPage) => async (dispatch) => {
     dispatch(setPreloader(true))
-    usersAPI.getUsersAPI(currentPage, countUsersOfPage).then(data => {
-        dispatch(setPreloader(false))
-        dispatch(setCurrentPage(currentPage))
-        dispatch(setUsers(data.items))
-        dispatch(setTotalUsersCount(data.totalCount))
-    })
+    const responseUsers = await usersAPI.getUsersAPI(currentPage, countUsersOfPage)
+    dispatch(setPreloader(false))
+    dispatch(setCurrentPage(currentPage))
+    dispatch(setUsers(responseUsers.items))
+    dispatch(setTotalUsersCount(responseUsers.totalCount))
 }
 
-export const followThunk = (id) => (dispatch) => {
+const followUnfollow = async (dispatch, id, apiMethod, actionCreator) => {
     dispatch(setIsDisabledFollow(true, id))
-    usersAPI.unfollowAPI(id).then(data => {
-        if(data.resultCode === 0) {
-            dispatch(follow(id))
-        }
-        dispatch(setIsDisabledFollow(false, id))
-    })
+    const responseUnfollow = await apiMethod(id)
+    if (responseUnfollow.resultCode === 0) {
+        dispatch(actionCreator(id))
+    }
+    dispatch(setIsDisabledFollow(false, id))
 }
 
-export const unfollowThunk = (id) => (dispatch) => {
-    dispatch(setIsDisabledFollow(true, id))
-    usersAPI.followAPI(id).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(unfollow(id))
-        }
-        dispatch(setIsDisabledFollow(false, id))
-    })
+export const followThunk = (id) => async (dispatch) => {
+    await followUnfollow(dispatch, id, usersAPI.followAPI.bind(usersAPI), follow)
+}
+
+export const unfollowThunk = (id) => async (dispatch) => {
+    await followUnfollow(dispatch, id, usersAPI.unfollowAPI.bind(usersAPI), unfollow)
 }
 
 export default friendsReducer

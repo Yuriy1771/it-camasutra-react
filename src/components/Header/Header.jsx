@@ -4,10 +4,10 @@ import logo_website_img from '../../images/logo-website.png'
 import avatar from '../../images/user_avatar.jpeg'
 import {NavLink} from "react-router-dom"
 
-const Header = (props) => {
+const Header = ({logoutThunk, login, isAuth}) => {
 
     const onLogout = () => {
-        props.logoutThunk()
+        logoutThunk()
     }
 
     return (
@@ -16,8 +16,8 @@ const Header = (props) => {
             <div className={styles.loginWrapper}>
                 <div className={styles.loginUserHeader}>
                 {
-                    props.isAuth !== false
-                        ? <div>{props.login}<div><button className={styles.logout} onClick={onLogout}>log out</button></div></div>
+                    isAuth !== false
+                        ? <div>{login}<div><button className={styles.logout} onClick={onLogout}>log out</button></div></div>
                         : <NavLink to={'/login'}>Auth</NavLink>
                 }
                 </div>

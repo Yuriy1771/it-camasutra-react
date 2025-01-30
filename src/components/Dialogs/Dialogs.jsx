@@ -7,18 +7,18 @@ import {reduxForm} from "redux-form";
 
 const AddMessageFormRedux = reduxForm({form: 'dialogsAddMessageForm',})(AddMessageForm)
 
-const Dialogs = (props) => {
-    let componentDialogs = props.state.dialogs.map((dialog) => {
+const Dialogs = ({state, addMessage}) => {
+    let componentDialogs = state.dialogs.map((dialog) => {
         return <DialogItem id={dialog.id} name={dialog.name} key={dialog.id}/>
 
     })
 
-    let componentMessages = props.state.messages.map((message) => {
+    let componentMessages = state.messages.map((message) => {
         return <MessageItem message={message.message} key={message.id}/>
     })
 
     const onSubmit = (formData) => {
-        props.addMessage(formData.newTextMessage)
+        addMessage(formData.newTextMessage)
     }
     return (
         <div className={styles.message_window}>
