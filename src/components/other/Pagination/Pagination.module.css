@@ -1,18 +1,63 @@
+.pagination {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
 .selectedPage {
+    display: inline-block;
     font-weight: bold;
     width: 20px;
     height: 20px;
-    border: 1px solid black;
+    border-color:gold;
+    border-radius: 0 10px 0 10px;
     text-align: center;
+    padding: 5px;
     cursor: pointer;
-    display: inline;
+    background: rgba(206, 145, 0, 0.36);
+}
+
+.numberPage:hover {
+    background: rgba(206, 145, 0, 0.36);
+    transition: .5s;
 }
 
 .numberPage {
+    display: inline-block;
     width: 20px;
     height: 20px;
-    border: 1px solid black;
+    border-color:gold;
+    border-radius: 0 10px 0 10px;
+    padding: 5px;
     text-align: center;
     cursor: pointer;
-    display: inline;
+}
+
+.prevBtn {
+    width: 45px;
+    height: 30px;
+    margin-right: 2px;
+    background: none;
+    border: 1px solid black;
+    border-radius: 0px 10px 0px 10px;
+    cursor: pointer;
+}
+
+.prevBtn:hover {
+    background: rgba(206, 145, 0, 0.36);
+    transition: .5s;
+}
+
+.nextBtn {
+    width: 45px;
+    height: 30px;
+    margin-left: 2px;
+    background: none;
+    border: 1px solid black;
+    border-radius: 0px 10px 0px 10px;
+    cursor: pointer;
+}
+
+.nextBtn:hover {
+    background: rgba(206, 145, 0, 0.36);
+    transition: .5s;
 }
