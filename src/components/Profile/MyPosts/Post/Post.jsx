@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Post.module.css'
-import post_user_avatar from '../../../../images/user_avatar.jpeg'
-import like_post_img from '../../../../images/like_post.png'
+import post_user_avatar from '../../../../assets/images/user_avatar.jpeg'
+import like_post_img from '../../../../assets/images/like_post.png'
 const Post = (props) => {
     return (
         <div className={styles.item_post}>

@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getProfileAPIThunk,
-    getProfileStatusThunk, updateProfileStatusThunk,
+    getProfileStatusThunk, savePhotoThunk, updateProfileStatusThunk,
 } from "../../redux/profileReducer";
 import {useParams} from "react-router";
 import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
@@ -11,17 +11,30 @@ import {compose} from "redux";
 
 //26083 my id
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+
+    refreshProfile() {
         let userId = this.props.param.userId
         if (!userId && this.props.isAuth) userId = this.props.authorizedMyUserId
         this.props.getProfileAPIThunk(userId)
         this.props.getProfileStatusThunk(userId)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.param.userId !== prevProps.param.userId) {
+            this.refreshProfile()
+        }
+    }
+
     render() {
         return (
             <Profile {...this.props} profile={this.props.profile} status={this.props.status}
-                     updateProfileStatusThunk={this.props.updateProfileStatusThunk}/>
+                     updateProfileStatusThunk={this.props.updateProfileStatusThunk} isOwner={!this.props.param.userId}
+                     savePhotoThunk={this.props.savePhotoThunk}
+            />
         )
     }
 }
@@ -45,6 +58,7 @@ export default compose(
         updateProfileStatusThunk,
         getProfileStatusThunk,
         getProfileAPIThunk,
+        savePhotoThunk,
     }),
     WithAuthRedirect,
 )(GetParams)

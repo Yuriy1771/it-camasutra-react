@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Header.module.css'
-import logo_website_img from '../../images/logo-website.png'
-import avatar from '../../images/user_avatar.jpeg'
+import logo_website_img from '../../assets/images/logo-website.png'
+import avatar from '../../assets/images/user_avatar.jpeg'
 import {NavLink} from "react-router-dom"
 
 const Header = ({logoutThunk, login, isAuth}) => {

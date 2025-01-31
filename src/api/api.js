@@ -40,4 +40,9 @@ export const profileAPI = {
     updateProfileStatusAPI(status) {
         return instance.put(`profile/status`, {status: status}).then(response => response.data)
     },
+    savePhotoAPI(mainPhoto) {
+        const formData = new FormData()
+        formData.append('image', mainPhoto)
+        return instance.put(`profile/photo`, formData).then(response => response.data)
+    }
 }
