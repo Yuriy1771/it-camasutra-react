@@ -1,14 +1,16 @@
+import React, {lazy, Suspense} from 'react'
 import './App.css';
 import Navbar from './components/Navbar/Navbar'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from "./components/Settings/Settings";
 import {Route, Routes} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import FriendsContainer from "./components/Friends/FriendsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
+import {WithSuspense} from "./components/hoc/WithSuspense";
+const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer')))
+const FriendsContainer = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer')))
+const Login = WithSuspense(lazy(() => import('./components/Login/Login')))
 
 const App = () => {
     return (
