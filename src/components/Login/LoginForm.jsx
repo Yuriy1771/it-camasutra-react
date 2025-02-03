@@ -4,7 +4,7 @@ import {createField, Input} from "../other/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import styles from '../other/FormsControls/FormsControls.module.css'
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captcha}) => {
 
     const maxLength = maxLengthCreator(50)
 
@@ -19,6 +19,8 @@ const LoginForm = ({handleSubmit, error}) => {
             <div>
                 <button>Login</button>
             </div>
+            {captcha && <img src={captcha} alt="captcha"/>}
+            {captcha && createField('enter symbols from picture', 'captcha', Input, required, maxLength) }
         </form>
     )
 }

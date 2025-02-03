@@ -7,9 +7,9 @@ import {Navigate} from "react-router-dom";
 
 const LoginFormRedux = reduxForm({form: 'login',})(LoginForm)
 
-const Login = ({loginThunk, isAuth}) => {
+const Login = ({loginThunk, isAuth, captcha}) => {
     const onSubmit = (formData) => {
-        loginThunk(formData.email, formData.password, formData.rememberMe)
+        loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     if(isAuth) {
@@ -17,13 +17,14 @@ const Login = ({loginThunk, isAuth}) => {
     }
     return (
         <div>
-        <LoginFormRedux onSubmit={onSubmit}/>
+        <LoginFormRedux onSubmit={onSubmit} captcha={captcha}/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captcha: state.auth.captcha,
 })
 
 export default connect(mapStateToProps, {

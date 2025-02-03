@@ -8,7 +8,7 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsersAPI (currentPage = 1, countUsersOfPage = 10) {
+    getUsersAPI(currentPage = 1, countUsersOfPage = 10) {
         return instance.get(`users?page=${currentPage}&count=${countUsersOfPage}`).then(response => response.data)
     },
     followAPI(id) {
@@ -23,8 +23,8 @@ export const authAPI = {
     getAuthDataAPI() {
         return instance.get(`auth/me`).then(response => response.data)
     },
-    login(email, password, rememberMe = false) {
-        return instance.post(`auth/login`, {email, password, rememberMe}).then(response => response.data)
+    login(email, password, rememberMe = false, captcha = null) {
+        return instance.post(`auth/login`, {email, password, rememberMe, captcha}).then(response => response.data)
     },
     logout() {
         return instance.delete(`auth/login`).then(response => response.data)
@@ -48,5 +48,11 @@ export const profileAPI = {
     },
     putProfileInfo(data) {
         return instance.put(`profile`, data).then(response => response.data)
+    }
+}
+
+export const securityAPI = {
+    getCaptchaAPI() {
+        return instance.get(`security/get-captcha-url`).then(response => response.data)
     }
 }
