@@ -1,10 +1,12 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'profile/ADD_POST'
 const SET_USER_PROFILE = 'profile/SET_USE_PROFILE'
 const SET_STATUS = 'profile/SET_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
 const SET_USER_PHOTO = 'profile/SET_USER_PHOTO'
+const SET_ABOUT_ME = 'profile/SET_ABOUT_ME'
 
 let initialState = {
     posts: [
@@ -43,6 +45,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: {...state.profile, photos: action.mainPhoto}
             }
+        case SET_ABOUT_ME:
+            return stateCopy = {
+                ...state,
+                profile: {...state.profile, profile: action.data}
+            }
         default:
             return state
     }
@@ -53,6 +60,7 @@ export const deletePostAC = (id) => ({type: DELETE_POST, id})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setProfileStatus = (status) => ({type: SET_STATUS, status})
 export const setUserMainPhoto = (mainPhoto) => ({type: SET_USER_PHOTO, mainPhoto})
+export const setDataProfileInfo = (data) => ({type: SET_ABOUT_ME, data})
 
 export const getProfileAPIThunk = (userId) => async (dispatch) => {
     const responseProfile = await profileAPI.getProfileAPI(userId)
@@ -72,10 +80,19 @@ export const updateProfileStatusThunk = (status) => async (dispatch) => {
 }
 
 export const savePhotoThunk = (mainPhoto) => async (dispatch) => {
-    debugger
     const response = await profileAPI.savePhotoAPI(mainPhoto)
     if (response.resultCode === 0) {
         dispatch(setUserMainPhoto(response.data.photos))
+    }
+}
+
+export const saveProfileInfoThunk = (data) => async (dispatch) => {
+    const response = await profileAPI.putProfileInfo(data)
+    if(response.resultCode === 0) {
+        dispatch(setDataProfileInfo(data))
+    } else {
+        let errorMessage = response.messages.length > 0 ? response.messages[0] : 'something error'
+        dispatch(stopSubmit('editProfile'), {_error: errorMessage})
     }
 }
 

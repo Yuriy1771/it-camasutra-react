@@ -1,0 +1,41 @@
+import {Input, Textarea} from "../../../other/FormsControls/FormsControls";
+import React from "react";
+import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../../utils/validators/validators";
+import styles from "../../../other/FormsControls/FormsControls.module.css";
+
+const ProfileDataForm = ({handleSubmit, profile, error}) => {
+    const maxLength = maxLengthCreator(50)
+    return (
+        <form onSubmit={handleSubmit}>
+            <button>Save</button>
+            {error && <div className={styles.formSummaryError}>
+                {error}
+            </div>}
+            <div>
+                <b>Full name : </b><Field component={Input} placeholder='full name' name='fullName' validate={[required, maxLength]}/>
+            </div>
+            <div>
+                <b>About me : </b><Field component={Input} placeholder='about me' name='aboutMe' validate={[required, maxLength]}/>
+            </div>
+            <div>
+                <b>Looking for a job : </b><Field component={Input} type='checkbox' name='lookingForAJob' validate={[required, maxLength]}/>
+            </div>
+            <div>
+                <b>Information : </b><Field component={Textarea} type='checkbox' placeholder={'Information'} name='lookingForAJobDescription' validate={[required, maxLength]}/>
+            </div>
+            <div>
+                <b>Contacts</b> : {Object.keys(profile.contacts)//return array from object contact
+                .map((contact) => {
+                    return <div key={contact}>
+                        <b>{contact}:</b><Field component={Input} placeholder={contact} type='text' name={'contacts.' + contact}/>
+                    </div>
+                })}
+            </div>
+        </form>
+    )
+}
+
+const ProfileDataFormRedux = reduxForm({form: 'editProfile', destroyOnUnmount: false})(ProfileDataForm)
+
+export default ProfileDataFormRedux

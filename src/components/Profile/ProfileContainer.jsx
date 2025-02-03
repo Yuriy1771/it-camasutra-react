@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getProfileAPIThunk,
-    getProfileStatusThunk, savePhotoThunk, updateProfileStatusThunk,
+    getProfileStatusThunk, getVkThunk, savePhotoThunk, saveProfileInfoThunk, updateProfileStatusThunk,
 } from "../../redux/profileReducer";
 import {useParams} from "react-router";
 import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
@@ -33,7 +33,7 @@ class ProfileContainer extends React.Component {
         return (
             <Profile {...this.props} profile={this.props.profile} status={this.props.status}
                      updateProfileStatusThunk={this.props.updateProfileStatusThunk} isOwner={!this.props.param.userId}
-                     savePhotoThunk={this.props.savePhotoThunk}
+                     savePhotoThunk={this.props.savePhotoThunk} saveProfileInfoThunk={this.props.saveProfileInfoThunk}
             />
         )
     }
@@ -59,6 +59,7 @@ export default compose(
         getProfileStatusThunk,
         getProfileAPIThunk,
         savePhotoThunk,
+        saveProfileInfoThunk,
     }),
     WithAuthRedirect,
 )(GetParams)
