@@ -32,7 +32,7 @@ const friendsReducer = (state = initialState, action) => {
                 users: updateObjectInArray(state.users, action.userId,{followed: false})
             }
         case SET_USERS:
-            return stateCopy = {...state, users: action.users,}
+            return stateCopy = {...state, users: action.users}
         case SET_USERS_TOTAL_COUNT:
             return stateCopy = {...state, totalUsersCount: action.usersCount}
         case SET_CURRENT_PAGE:
@@ -61,8 +61,8 @@ export const getUsersThunk = (currentPage, countUsersOfPage) => async (dispatch)
     dispatch(setPreloader(true))
     const responseUsers = await usersAPI.getUsersAPI(currentPage, countUsersOfPage)
     dispatch(setPreloader(false))
-    dispatch(setCurrentPage(currentPage))
     dispatch(setUsers(responseUsers.items))
+    dispatch(setCurrentPage(currentPage))
     dispatch(setTotalUsersCount(responseUsers.totalCount))
 }
 

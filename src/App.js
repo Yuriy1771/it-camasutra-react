@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar'
 import News from './components/News/News'
 import Music from './components/Music/Music'
 import Settings from "./components/Settings/Settings";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {WithSuspense} from "./components/hoc/WithSuspense";
@@ -19,6 +19,7 @@ const App = () => {
             <Navbar/>
             <div className='app_wrapper_content'>
                 <Routes>
+                    <Route path='/' element={<Navigate to={'/profile'}/>}/>
                     <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
                     <Route path='/messages/*' element={<DialogsContainer/>}/>
                     <Route path='/friends/*' element={<FriendsContainer/>}/>
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path='/music/*' element={<Music/>}/>
                     <Route path='/settings/*' element={<Settings/>}/>
                     <Route path='/login/*' element={<Login/>}/>
+                    <Route path='*' element={<div>404 NOT FOUND</div>}/>
                 </Routes>
             </div>
         </div>
