@@ -2,7 +2,7 @@ import React from 'react'
 import LoginForm from "./LoginForm";
 import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
-import {loginThunk, logoutThunk} from "../../redux/authReducer";
+import {loginThunk, logoutThunk} from "../../redux/authReducer.ts";
 import {Navigate} from "react-router-dom";
 
 const LoginFormRedux = reduxForm({form: 'login',})(LoginForm)
