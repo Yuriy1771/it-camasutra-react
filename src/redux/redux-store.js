@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import profileReducer from "./profileReducer";
+import profileReducer from "./profileReducer.ts";
 import dialogsReducer from "./dialogsReducer.ts";
-import friendsReducer from "./friendsReducer";
+import friendsReducer from "./friendsReducer.ts";
 import authReducer from "./authReducer.ts";
 import {thunk} from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form'

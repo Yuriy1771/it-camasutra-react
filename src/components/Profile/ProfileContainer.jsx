@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {
     getProfileAPIThunk,
     getProfileStatusThunk, getVkThunk, savePhotoThunk, saveProfileInfoThunk, updateProfileStatusThunk,
-} from "../../redux/profileReducer";
+} from "../../redux/profileReducer.ts";
 import {useParams} from "react-router";
 import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";

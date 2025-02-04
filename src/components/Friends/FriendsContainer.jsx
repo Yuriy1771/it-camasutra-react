@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     followThunk, getUsersThunk,
     unfollowThunk
-} from "../../redux/friendsReducer";
+} from "../../redux/friendsReducer.ts";
 import Friends from "./Friends";
 import Preloader from "../other/Preloader/Preloader";
 import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
