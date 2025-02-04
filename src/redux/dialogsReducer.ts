@@ -6,7 +6,7 @@ type messagesType = {id: number, message: string}
 
 export type initialStateType = typeof initialState
 
-let initialState = {
+let initialState:initialStateType = {
     messages: [
         {id: 1, message: 'Hello! i am at work now'},
     ] as messagesType[],

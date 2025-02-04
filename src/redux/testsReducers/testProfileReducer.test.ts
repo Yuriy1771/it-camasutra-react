@@ -1,11 +1,14 @@
 import profileReducer, {addPostAC, deletePostAC, setProfileStatus, setUserProfile} from "../profileReducer";
+import {postsType, profileType} from "../../types/types";
 
-let state = {
+type stateType = typeof state
+
+let state:stateType = {
     posts: [
         {id: 1, postMessage: 'Hi, how are you?', likesCount: 5, userAvatar: '',},
         {id: 2, postMessage: 'Why doesn\'t my friend answer me?', likesCount: 10, userAvatar: '',},
-    ],
-    profile: [],
+    ] as postsType[],
+    profile: [] as profileType[],
     status: '',
 }
 
