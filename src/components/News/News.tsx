@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from './News.module.css'
 
-const News = (props) => {
+const News:FC = (props) => {
     return (
         <div>
             <span>I'm a news component</span>

@@ -4,6 +4,7 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {loginThunk, logoutThunk} from "../../redux/authReducer.ts";
 import {Navigate} from "react-router-dom";
+import {appStateType} from "../../redux/redux-store";
 
 const LoginFormRedux = reduxForm({form: 'login',})(LoginForm)
 
@@ -16,7 +17,7 @@ const Login:FC<propsType> = ({loginThunk, isAuth, captcha}) => {
         loginThunk(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
-    if(isAusth) {
+    if(isAuth) {
         return <Navigate to={'/profile'}/>
     }
     return (
@@ -31,7 +32,7 @@ const mapStateToProps = (state):mapStatePropsType => ({
     captcha: state.auth.captcha,
 })
 
-export default connect<mapStatePropsType, mapDispatchPropsType>(mapStateToProps, {
+export default connect<mapStatePropsType, mapDispatchPropsType, appStateType>(mapStateToProps, {
     loginThunk,
     logoutThunk,
 })(Login)

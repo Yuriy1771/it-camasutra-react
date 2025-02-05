@@ -1,34 +1,38 @@
-import React, {useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import styles from './ProfileInfo.module.css'
 import user_avatar_img from "../../../assets/images/user_avatar.jpeg";
-import Preloader from "../../other/Preloader/Preloader";
+import Preloader from "../../other/Preloader/Preloader.tsx";
 import ProfileStatus from "./ProfileStatus/ProfileStatus.tsx";
-import ProfileData from "./ProfileData/ProfileData";
-import ProfileDataFormRedux from "./ProfileData/ProfileDataForm";
+import ProfileData from "./ProfileData/ProfileData.tsx";
+import ProfileDataFormRedux from "./ProfileData/ProfileDataForm.tsx";
+import {profileType} from "../../../types/types";
 
-const ProfileInfo = ({profile, updateProfileStatusThunk, status, isOwner, savePhotoThunk, saveProfileInfoThunk}) => {
-    const [editMode, setEditMode] = useState(false)
+export type profileInfoPropsType = {profile: profileType, updateProfileStatusThunk: (status: string) => void, status: string, isOwner?: number,
+                    savePhotoThunk: any, saveProfileInfoThunk:(data:string) => any}
+
+const ProfileInfo:FC<profileInfoPropsType> = ({profile, updateProfileStatusThunk, status, isOwner, savePhotoThunk, saveProfileInfoThunk}) => {
+    const [editMode, setEditMode] = useState<boolean>(false)
 
     if (profile == '') {
         return <><Preloader/></>
 
     }
-    const onEditMode = () => {
+    const onEditMode = ():void => {
         setEditMode(true)
 
     }
 
 
-    const onMainPhotoSelected = (e) => {
+    const onMainPhotoSelected = (e):void => {
         if (e.target.files.length) {
             let mainPhoto = e.target.files[0]
             savePhotoThunk(mainPhoto)
         }
     }
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData):void => {
         saveProfileInfoThunk(formData).then(
-            () => {
+            ():void => {
                 setEditMode(false)
             }
         )

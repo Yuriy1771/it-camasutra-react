@@ -1,10 +1,12 @@
-import {Input, Textarea} from "../../../other/FormsControls/FormsControls";
-import React from "react";
+import {Input, Textarea} from "../../../other/FormsControls/FormsControls.jsx";
+import React, {FC} from "react";
 import {Field, reduxForm} from "redux-form";
-import {maxLengthCreator, required} from "../../../../utils/validators/validators";
+import {maxLengthCreator, required} from "../../../../utils/validators/validators.js";
 import styles from "../../../other/FormsControls/FormsControls.module.css";
+import {profileType} from "../../../../types/types";
 
-const ProfileDataForm = ({handleSubmit, profile, error}) => {
+type propsType = {handleSubmit:(formData: string) => void, profile:profileType, error:string}
+const ProfileDataForm:FC<propsType> = ({handleSubmit, profile, error}) => {
     const maxLength = maxLengthCreator(50)
     return (
         <form onSubmit={handleSubmit}>

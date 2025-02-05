@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from './Navbar.module.css'
 import {NavLink} from 'react-router-dom'
 
 
-const Navbar = () => {
+const Navbar:FC = (props) => {
 
-    const ActiveLink = ({isActive}) => isActive ? styles.active : styles.item.a;
+    const ActiveLink:any = ({isActive}) => isActive ? styles.active : styles.item.a;
 
     return (
         <nav className={styles.nav}>

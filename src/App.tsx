@@ -1,13 +1,13 @@
 import React, {lazy, Suspense} from 'react'
 import './App.css';
-import Navbar from './components/Navbar/Navbar'
-import News from './components/News/News'
-import Music from './components/Music/Music'
-import Settings from "./components/Settings/Settings";
+import Navbar from './components/Navbar/Navbar.tsx'
+import News from './components/News/News.tsx'
+import Music from './components/Music/Music.tsx'
+import Settings from "./components/Settings/Settings.tsx";
 import {Navigate, Route, Routes} from "react-router-dom";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer.tsx";
 import HeaderContainer from "./components/Header/HeaderContainer.tsx";
-import {WithSuspense} from "./components/hoc/WithSuspense";
+import {WithSuspense} from "./components/hoc/WithSuspense.jsx";
 const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer.tsx')))
 const FriendsContainer = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
 const Login = WithSuspense(lazy(() => import('./components/Login/Login.tsx')))

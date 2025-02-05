@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from './Profile.module.css'
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import ProfileInfo, {profileInfoPropsType} from "./ProfileInfo/ProfileInfo.tsx";
+import MyPostsContainer from "./MyPosts/MyPostsContainer.tsx";
 
-const Profile = ({profile, updateProfileStatusThunk, status, isOwner, savePhotoThunk, saveProfileInfoThunk}) => {
+type propsType = profileInfoPropsType
+const Profile:FC<propsType> = ({profile, updateProfileStatusThunk, status, isOwner, savePhotoThunk, saveProfileInfoThunk}) => {
     return (
         <div className={styles.content}>
             <ProfileInfo profile={profile} updateProfileStatusThunk={updateProfileStatusThunk}

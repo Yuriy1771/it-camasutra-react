@@ -1,16 +1,24 @@
 import React from 'react'
-import Profile from "./Profile";
+import Profile from "./Profile.tsx";
 import {connect} from "react-redux";
 import {
     getProfileAPIThunk,
-    getProfileStatusThunk, getVkThunk, savePhotoThunk, saveProfileInfoThunk, updateProfileStatusThunk,
+    getProfileStatusThunk, savePhotoThunk, saveProfileInfoThunk, updateProfileStatusThunk,
 } from "../../redux/profileReducer.ts";
 import {useParams} from "react-router";
-import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
+import {WithAuthRedirect} from "../hoc/WithAuthRedirect.jsx";
 import {compose} from "redux";
+import {profileType} from "../../types/types";
+import {appStateType} from "../../redux/redux-store";
 
 //26083 my id
-class ProfileContainer extends React.Component {
+type mapStatePropsType = {profile: profileType, status: string, authorizedMyUserId: number, isAuth: boolean}
+type mapDispatchPropsType = {updateProfileStatusThunk: (status:string) => void, getProfileStatusThunk: (id:number) => void,
+                                getProfileAPIThunk:(id: number) => void, savePhotoThunk: (mainPhoto: any) => void,
+                                saveProfileInfoThunk:(data:string) => void}
+type propsType = mapStatePropsType & mapDispatchPropsType
+//@ts-ignore
+class ProfileContainer extends React.Component<propsType> {
 
     refreshProfile() {
         let userId = this.props.param.userId
@@ -54,7 +62,7 @@ const GetParams = (props) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {
+    connect<mapStatePropsType, mapDispatchPropsType, appStateType>(mapStateToProps, {
         updateProfileStatusThunk,
         getProfileStatusThunk,
         getProfileAPIThunk,
