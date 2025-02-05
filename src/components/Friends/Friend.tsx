@@ -1,14 +1,16 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from "./Friends.module.css";
 import {NavLink} from "react-router-dom";
 import user_avatar from "../../assets/images/user_avatar.png";
+import {usersType} from "../../types/types";
 
-const Friend = ({user, isDisabledFollow, followThunk, unfollowThunk}) => {
-    const onClickFollow = (id) => {
+type friendType = {user: usersType, isDisabledFollow:number[], followThunk:(id:number) => void, unfollowThunk:(id:number) => void}
+const Friend:FC<friendType> = ({user, isDisabledFollow, followThunk, unfollowThunk}) => {
+    const onClickFollow = (id):void => {
         followThunk(id)
     }
 
-    const onClickUnfollow = (id) => {
+    const onClickUnfollow = (id):void => {
         unfollowThunk(id)
     }
     return (

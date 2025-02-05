@@ -6,7 +6,7 @@ import Music from './components/Music/Music'
 import Settings from "./components/Settings/Settings";
 import {Navigate, Route, Routes} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import HeaderContainer from "./components/Header/HeaderContainer.tsx";
 import {WithSuspense} from "./components/hoc/WithSuspense";
 const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer')))
 const FriendsContainer = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
