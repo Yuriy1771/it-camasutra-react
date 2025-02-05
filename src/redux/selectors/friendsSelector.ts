@@ -1,6 +1,7 @@
 import {createSelector} from "reselect";
+import {appStateType} from "../redux-store.ts";
 
-const getUsers = (state) => {
+const getUsers = (state:appStateType) => {
     return state.friendsPage.users
 }
 
@@ -8,22 +9,22 @@ export const getUsersSelector = createSelector(getUsers, (users) => {
     return users.filter(u => true)
 })
 
-export const getCountUsersOfPage = (state) => {
+export const getCountUsersOfPage = (state:appStateType) => {
     return state.friendsPage.countUsersOfPage
 }
 
-export const getIsLoader = (state) => {
+export const getIsLoader = (state:appStateType) => {
     return state.friendsPage.isLoader
 }
 
-export const getTotalUsersCount = (state) => {
+export const getTotalUsersCount = (state:appStateType) => {
     return state.friendsPage.totalUsersCount
 }
 
-export const getIsDisabledFollow = (state) => {
+export const getIsDisabledFollow = (state:appStateType) => {
     return state.friendsPage.isDisabledFollow
 }
 
-export const getCurrentPage = (state) => {
+export const getCurrentPage = (state:appStateType) => {
     return state.friendsPage.currentPage
 }

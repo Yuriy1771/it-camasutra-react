@@ -14,14 +14,15 @@ import {
     getIsLoader,
     getTotalUsersCount,
     getUsersSelector
-} from "../../redux/selectors/friendsSelector.js";
+} from "../../redux/selectors/friendsSelector.ts";
 import {usersType} from "../../types/types";
+import {appStateType} from "../../redux/redux-store";
 
 type propsType = {getUsersThunk: (currentPage:number,countUsersOfPage:number)=>void, currentPage:number,countUsersOfPage:number,
                 isLoader:boolean, users: usersType[], isDisabledFollow: number[], unfollowThunk:() =>void, followThunk:()=>void ,
                 totalUsersCount: number}
 
-
+//@ts-ignore
 class FriendsAPIContainer extends React.Component<propsType>{
     componentDidMount() {
         const {currentPage, countUsersOfPage} = this.props
@@ -45,7 +46,7 @@ class FriendsAPIContainer extends React.Component<propsType>{
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:appStateType) => {
     return {
         isLoader: getIsLoader(state),
         totalUsersCount: getTotalUsersCount(state),
