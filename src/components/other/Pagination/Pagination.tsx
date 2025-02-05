@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import styles from "./Pagination.module.css";
 
-const Pagination = ({currentPage, onCurrentPageClick, totalUsersCount, countUsersOfPage, portionSize = 10}) => {
+type propsType = {currentPage: number, onCurrentPageClick:(page:number)=>void, totalUsersCount:number, countUsersOfPage:number, portionSize?: number}
 
-    let pagesCount = Math.ceil(totalUsersCount / countUsersOfPage)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
+const Pagination:React.FC<propsType> = ({currentPage, onCurrentPageClick, totalUsersCount, countUsersOfPage, portionSize = 10}) => {
+
+    let pagesCount:number = Math.ceil(totalUsersCount / countUsersOfPage)
+    let pages:number[] = []
+    for (let i:number = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     useEffect(() => setPortionNumber(Math.ceil(currentPage / portionSize)),[currentPage, portionSize])
 
-    let portionCount = Math.ceil(pagesCount / portionSize)
+    let portionCount:number = Math.ceil(pagesCount / portionSize)
     let [portionNumber, setPortionNumber] = useState(1)
-    let leftPortionPageNumber = (portionNumber -1) * portionSize + 1
-    let rightPortionPageNumber = portionNumber * portionSize
+    let leftPortionPageNumber:number = (portionNumber -1) * portionSize + 1
+    let rightPortionPageNumber:number = portionNumber * portionSize
     return (
         <>
             <div className={styles.pagination}>

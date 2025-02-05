@@ -1,8 +1,12 @@
-import React from 'react'
-import Pagination from "../other/Pagination/Pagination";
-import Friend from "./Friend";
+import React, {FC} from 'react'
+import Pagination from "../other/Pagination/Pagination.tsx";
+import Friend from "./Friend.jsx";
+import {usersType} from "../../types/types";
 
-const Friends = ({totalUsersCount, countUsersOfPage, followThunk, unfollowThunk,
+type propsType = {totalUsersCount: number, countUsersOfPage: number, followThunk:() => void, unfollowThunk:() => void,
+    users:usersType[], isDisabledFollow:number[], currentPage:number, onCurrentPageClick: (page:number) => void}
+
+const Friends:FC<propsType> = ({totalUsersCount, countUsersOfPage, followThunk, unfollowThunk,
                      users, isDisabledFollow, currentPage, onCurrentPageClick}) => {
     return (
         <div>

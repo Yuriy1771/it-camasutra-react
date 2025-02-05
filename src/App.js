@@ -9,7 +9,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {WithSuspense} from "./components/hoc/WithSuspense";
 const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer')))
-const FriendsContainer = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer')))
+const FriendsContainer = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
 const Login = WithSuspense(lazy(() => import('./components/Login/Login')))
 
 const App = () => {

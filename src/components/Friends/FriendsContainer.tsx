@@ -4,9 +4,9 @@ import {
     followThunk, getUsersThunk,
     unfollowThunk
 } from "../../redux/friendsReducer.ts";
-import Friends from "./Friends";
-import Preloader from "../other/Preloader/Preloader";
-import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
+import Friends from "./Friends.tsx";
+import Preloader from "../other/Preloader/Preloader.jsx";
+import {WithAuthRedirect} from "../hoc/WithAuthRedirect.jsx";
 import {compose} from "redux";
 import {
     getCountUsersOfPage, getCurrentPage,
@@ -14,9 +14,15 @@ import {
     getIsLoader,
     getTotalUsersCount,
     getUsersSelector
-} from "../../redux/selectors/friendsSelector";
+} from "../../redux/selectors/friendsSelector.js";
+import {usersType} from "../../types/types";
 
-class FriendsAPIContainer extends React.Component {
+type propsType = {getUsersThunk: (currentPage:number,countUsersOfPage:number)=>void, currentPage:number,countUsersOfPage:number,
+                isLoader:boolean, users: usersType[], isDisabledFollow: number[], unfollowThunk:() =>void, followThunk:()=>void ,
+                totalUsersCount: number}
+
+
+class FriendsAPIContainer extends React.Component<propsType>{
     componentDidMount() {
         const {currentPage, countUsersOfPage} = this.props
         this.props.getUsersThunk(currentPage, countUsersOfPage)
