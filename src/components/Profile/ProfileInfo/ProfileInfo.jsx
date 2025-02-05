@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styles from './ProfileInfo.module.css'
 import user_avatar_img from "../../../assets/images/user_avatar.jpeg";
 import Preloader from "../../other/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import ProfileStatus from "./ProfileStatus/ProfileStatus.tsx";
 import ProfileData from "./ProfileData/ProfileData";
 import ProfileDataFormRedux from "./ProfileData/ProfileDataForm";
 

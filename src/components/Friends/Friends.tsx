@@ -3,7 +3,7 @@ import Pagination from "../other/Pagination/Pagination.tsx";
 import Friend from "./Friend.jsx";
 import {usersType} from "../../types/types";
 
-type propsType = {totalUsersCount: number, countUsersOfPage: number, followThunk:() => void, unfollowThunk:() => void,
+type propsType = {totalUsersCount: number, countUsersOfPage: number, followThunk:(id:number) => void, unfollowThunk:(id:number) => void,
     users:usersType[], isDisabledFollow:number[], currentPage:number, onCurrentPageClick: (page:number) => void}
 
 const Friends:FC<propsType> = ({totalUsersCount, countUsersOfPage, followThunk, unfollowThunk,

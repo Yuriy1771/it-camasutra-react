@@ -18,12 +18,21 @@ import {
 import {usersType} from "../../types/types";
 import {appStateType} from "../../redux/redux-store";
 
-type propsType = {getUsersThunk: (currentPage:number,countUsersOfPage:number)=>void, currentPage:number,countUsersOfPage:number,
-                isLoader:boolean, users: usersType[], isDisabledFollow: number[], unfollowThunk:() =>void, followThunk:()=>void ,
-                totalUsersCount: number}
+type mapStatePropsType = {
+    currentPage: number, countUsersOfPage: number, isLoader: boolean, users: usersType[],
+    isDisabledFollow: number[], totalUsersCount: number
+}
+type mapDispatchPropsType = {
+    getUsersThunk: (currentPage: number, countUsersOfPage: number) => void,
+    unfollowThunk: (id:number) => void,
+    followThunk: (id:number) => void,
+}
+type ownPropsType = { pageTitle: string }
+
+type propsType = mapStatePropsType & mapDispatchPropsType & ownPropsType
 
 //@ts-ignore
-class FriendsAPIContainer extends React.Component<propsType>{
+class FriendsAPIContainer extends React.Component<propsType> {
     componentDidMount() {
         const {currentPage, countUsersOfPage} = this.props
         this.props.getUsersThunk(currentPage, countUsersOfPage)
@@ -36,6 +45,7 @@ class FriendsAPIContainer extends React.Component<propsType>{
 
     render() {
         return <>
+            <h2>{this.props.pageTitle}</h2>
             {this.props.isLoader ? <Preloader/> : null}
             <Friends users={this.props.users} isDisabledFollow={this.props.isDisabledFollow}
                      onCurrentPageClick={this.onCurrentPageClick} currentPage={this.props.currentPage}
@@ -46,7 +56,7 @@ class FriendsAPIContainer extends React.Component<propsType>{
     }
 }
 
-const mapStateToProps = (state:appStateType) => {
+const mapStateToProps = (state: appStateType):mapStatePropsType => {
     return {
         isLoader: getIsLoader(state),
         totalUsersCount: getTotalUsersCount(state),
@@ -58,7 +68,7 @@ const mapStateToProps = (state:appStateType) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {
+    connect<mapStatePropsType, mapDispatchPropsType, ownPropsType, appStateType>(mapStateToProps, {
         //(...) => store.dispatch(follow(...)
         getUsersThunk,
         followThunk,

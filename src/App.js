@@ -22,7 +22,7 @@ const App = () => {
                     <Route path='/' element={<Navigate to={'/profile'}/>}/>
                     <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
                     <Route path='/messages/*' element={<DialogsContainer/>}/>
-                    <Route path='/friends/*' element={<FriendsContainer/>}/>
+                    <Route path='/friends/*' element={<FriendsContainer pageTitle={'samurai'}/>}/>
                     <Route path='/news/*' element={<News/>}/>
                     <Route path='/music/*' element={<Music/>}/>
                     <Route path='/settings/*' element={<Settings/>}/>
