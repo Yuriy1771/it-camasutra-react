@@ -1,6 +1,8 @@
 import {usersAPI} from "../api/api.js";
 import {updateObjectInArray} from "../utils/helpers/objectHelpers.js";
 import {photosType, usersType} from "../types/types";
+import {Dispatch} from "redux";
+import {appStateType} from "./redux-store";
 
 const FOLLOW = 'friends/FOLLOW'
 const UNFOLLOW = 'friends/UNFOLLOW'
@@ -11,7 +13,7 @@ const SET_PRELOADER = 'friends/SET_PRELOADER'
 const IS_DISABLED_FOLLOW = 'friends/IS_DISABLED_FOLLOW'
 
 type initialStateType = typeof initialState
-let initialState:initialStateType = {
+let initialState: initialStateType = {
     users: [] as usersType,
     countUsersOfPage: 10,
     totalUsersCount: 0,
@@ -20,18 +22,18 @@ let initialState:initialStateType = {
     isDisabledFollow: [] as number[], //array of users ids
 }
 
-const friendsReducer = (state = initialState, action: any):initialStateType => {
+const friendsReducer = (state = initialState, action: actionsType): initialStateType => {
     let stateCopy
     switch (action.type) {
         case FOLLOW:
             return stateCopy = {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId,{followed: true})
+                users: updateObjectInArray(state.users, action.userId, {followed: true})
             }
         case UNFOLLOW:
             return stateCopy = {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId,{followed: false})
+                users: updateObjectInArray(state.users, action.userId, {followed: false})
             }
         case SET_USERS:
             return stateCopy = {...state, users: action.users}
@@ -50,33 +52,44 @@ const friendsReducer = (state = initialState, action: any):initialStateType => {
     }
     return state
 }
+type actionsType = (followACType | unfollowACType | setUsersACType | setCurrentPageACType | setTotalUsersCount |
+    setPreloaderACType | setIsDisabledFollowACType)
 
-type followACType = {type: typeof FOLLOW, userId: number}
-type unfollowACType = {type: typeof UNFOLLOW, userId: number}
-type setUsersACType = {type: typeof SET_USERS, users: usersType}
-type setCurrentPageACType = {type: typeof SET_CURRENT_PAGE, currentPage: number}
-type setTotalUsersCount = {type: typeof SET_USERS_TOTAL_COUNT, usersCount: number}
-type setPreloaderACType = {type: typeof SET_PRELOADER, isLoader: boolean}
-type setIsDisabledFollowACType = {type: typeof IS_DISABLED_FOLLOW, isDisabledFollow: boolean, id: number}
+type followACType = { type: typeof FOLLOW, userId: number }
+type unfollowACType = { type: typeof UNFOLLOW, userId: number }
+type setUsersACType = { type: typeof SET_USERS, users: usersType }
+type setCurrentPageACType = { type: typeof SET_CURRENT_PAGE, currentPage: number }
+type setTotalUsersCount = { type: typeof SET_USERS_TOTAL_COUNT, usersCount: number }
+type setPreloaderACType = { type: typeof SET_PRELOADER, isLoader: boolean }
+type setIsDisabledFollowACType = { type: typeof IS_DISABLED_FOLLOW, isDisabledFollow: boolean, id: number }
 
-export const follow = (userId:number):followACType => ({type: FOLLOW, userId})
-export const unfollow = (userId:number):unfollowACType => ({type: UNFOLLOW, userId})
-export const setUsers = (users:usersType):setUsersACType => ({type: SET_USERS, users})
-export const setCurrentPage = (currentPage:number):setCurrentPageACType => ({type: SET_CURRENT_PAGE, currentPage})
-export const setTotalUsersCount = (usersCount:number):setTotalUsersCount => ({type: SET_USERS_TOTAL_COUNT, usersCount})
-export const setPreloader = (isLoader:boolean):setPreloaderACType => ({type: SET_PRELOADER, isLoader})
-export const setIsDisabledFollow = (isDisabledFollow:boolean, id:number):setIsDisabledFollowACType => ({type: IS_DISABLED_FOLLOW, isDisabledFollow, id})
+export const follow = (userId: number): followACType => ({type: FOLLOW, userId})
+export const unfollow = (userId: number): unfollowACType => ({type: UNFOLLOW, userId})
+export const setUsers = (users: usersType): setUsersACType => ({type: SET_USERS, users})
+export const setCurrentPage = (currentPage: number): setCurrentPageACType => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCount = (usersCount: number): setTotalUsersCount => ({
+    type: SET_USERS_TOTAL_COUNT,
+    usersCount
+})
+export const setPreloader = (isLoader: boolean): setPreloaderACType => ({type: SET_PRELOADER, isLoader})
+export const setIsDisabledFollow = (isDisabledFollow: boolean, id: number): setIsDisabledFollowACType => ({
+    type: IS_DISABLED_FOLLOW,
+    isDisabledFollow,
+    id
+})
 
-export const getUsersThunk = (currentPage:number, countUsersOfPage:number) => async (dispatch:any) => {
-    dispatch(setPreloader(true))
-    const responseUsers = await usersAPI.getUsersAPI(currentPage, countUsersOfPage)
-    dispatch(setPreloader(false))
-    dispatch(setUsers(responseUsers.items))
-    dispatch(setCurrentPage(currentPage))
-    dispatch(setTotalUsersCount(responseUsers.totalCount))
-}
+export const getUsersThunk = (currentPage: number, countUsersOfPage: number) =>
+    async (dispatch: Dispatch<actionsType>, getState: () => appStateType) => {
+        dispatch(setPreloader(true))
+        const responseUsers = await usersAPI.getUsersAPI(currentPage, countUsersOfPage)
+        dispatch(setPreloader(false))
+        dispatch(setUsers(responseUsers.items))
+        dispatch(setCurrentPage(currentPage))
+        dispatch(setTotalUsersCount(responseUsers.totalCount))
+    }
 
-const followUnfollow = async (dispatch:any, id:number, apiMethod:any, actionCreator:any) => {
+const followUnfollow = async (dispatch: Dispatch<actionsType>, id: number, apiMethod: any,
+                              actionCreator: (id: number) => followACType | unfollowACType) => {
     dispatch(setIsDisabledFollow(true, id))
     const responseUnfollow = await apiMethod(id)
     if (responseUnfollow.resultCode === 0) {
@@ -85,11 +98,11 @@ const followUnfollow = async (dispatch:any, id:number, apiMethod:any, actionCrea
     dispatch(setIsDisabledFollow(false, id))
 }
 
-export const followThunk = (id:number) => async (dispatch:any) => {
+export const followThunk = (id: number) => async (dispatch: Dispatch<actionsType>, getState: () => appStateType) => {
     await followUnfollow(dispatch, id, usersAPI.followAPI.bind(usersAPI), follow)
 }
 
-export const unfollowThunk = (id:number) => async (dispatch:any) => {
+export const unfollowThunk = (id: number) => async (dispatch: Dispatch<actionsType>, getState: () => appStateType) => {
     await followUnfollow(dispatch, id, usersAPI.unfollowAPI.bind(usersAPI), unfollow)
 }
 
