@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from './MessageItem.module.css'
 
-const MessageItem = ({message}) => {
+type propsType = {message: string}
+
+const MessageItem:FC<propsType> = ({message}) => {
     return (
         <div className={styles.messagesWindow}>
                 {message}

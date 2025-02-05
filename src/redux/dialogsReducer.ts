@@ -1,8 +1,6 @@
+import {dialogsType, messagesType} from "../types/types";
+
 const ADD_MESSAGE = 'dialogs/ADD_MESSAGE'
-
-type dialogsType = {id: number, name: string }
-
-type messagesType = {id: number, message: string}
 
 export type initialStateType = typeof initialState
 

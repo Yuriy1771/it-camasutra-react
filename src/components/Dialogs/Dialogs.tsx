@@ -1,23 +1,25 @@
 import React from 'react'
 import styles from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem"
-import MessageItem from "./MessageItem/MessageItem"
-import AddMessageForm from "./AddMessageForm";
+import DialogItem from "./DialogItem/DialogItem.tsx"
+import MessageItem from "./MessageItem/MessageItem.tsx"
+import AddMessageForm from "./AddMessageForm.tsx";
 import {reduxForm} from "redux-form";
+import {dialogsType, messagesType} from "../../types/types";
 
+type propsType = {dialogs: dialogsType, messages: messagesType, addMessage: (newTextMessage:string) => void}
 const AddMessageFormRedux = reduxForm({form: 'dialogsAddMessageForm',})(AddMessageForm)
 
-const Dialogs = ({state, addMessage}) => {
-    let componentDialogs = state.dialogs.map((dialog) => {
+const Dialogs = ({dialogs, messages, addMessage}):propsType => {
+    let componentDialogs = dialogs.map((dialog) => {
         return <DialogItem id={dialog.id} name={dialog.name} key={dialog.id}/>
 
     })
 
-    let componentMessages = state.messages.map((message) => {
+    let componentMessages = messages.map((message) => {
         return <MessageItem message={message.message} key={message.id}/>
     })
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData):void => {
         addMessage(formData.newTextMessage)
     }
     return (
