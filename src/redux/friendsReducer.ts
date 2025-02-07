@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api.js";
+import {usersAPI} from "../api/api.ts";
 import {updateObjectInArray} from "../utils/helpers/objectHelpers.js";
 import {photosType, usersType} from "../types/types";
 import {Dispatch} from "redux";

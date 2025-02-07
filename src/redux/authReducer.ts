@@ -1,4 +1,4 @@
-import {authAPI, securityAPI} from "../api/api.js";
+import {authAPI, resultCodeForCaptcha, resultCodesEnum, securityAPI} from "../api/api.ts";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
 import {appStateType} from "./redux-store";
@@ -55,19 +55,19 @@ const setCaptcha = (captcha): captchaACType => ({type: SET_CAPTCHA, captcha})
 type actionsType = authUserDataType | captchaACType
 export const setAuthUserDataThunk = () => async (dispatch: Dispatch<actionsType>, getUsers: () => appStateType) => {
     const responseAuthData = await authAPI.getAuthDataAPI()
-    if (responseAuthData.resultCode === 0) {
+    if (responseAuthData.resultCode === resultCodesEnum.success) {
         let {id, email, login} = responseAuthData.data
         dispatch(setAuthUserData(id, email, login, true))
     }
 }
 
-export const loginThunk = (email: string, password: number, rememberMe: boolean, captcha: string) =>
+export const loginThunk = (email: string, password: string, rememberMe: boolean, captcha: string) =>
     async (dispatch: Dispatch<actionsType>, getUsers: () => appStateType) => {
         const responseLogin = await authAPI.login(email, password, rememberMe, captcha)
-        if (responseLogin.resultCode === 0) {
+        if (responseLogin.resultCode === resultCodesEnum.success) {
             dispatch(setAuthUserDataThunk())
         } else {
-            if (responseLogin.resultCode === 10) {
+            if (responseLogin.resultCode === resultCodeForCaptcha.captchaIsRequired) {
                 dispatch(captchaThunk())
             }
             let errorMessage = responseLogin.messages.length > 0 ? responseLogin.messages[0] : 'something error'
@@ -77,7 +77,7 @@ export const loginThunk = (email: string, password: number, rememberMe: boolean,
 
 export const logoutThunk = () => async (dispatch: Dispatch<actionsType>, getState: () => appStateType) => {
     const responseLogout = await authAPI.logout()
-    if (responseLogout.resultCode === 0) {
+    if (responseLogout.resultCode === resultCodesEnum.success) {
         dispatch(setAuthUserData(null, null, null, false))
     }
 }
