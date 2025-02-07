@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api.ts";
+import {resultCodesEnum, usersAPI} from "../api/api.ts";
 import {updateObjectInArray} from "../utils/helpers/objectHelpers.js";
 import {photosType, usersType} from "../types/types";
 import {Dispatch} from "redux";
@@ -92,7 +92,7 @@ const followUnfollow = async (dispatch: Dispatch<actionsType>, id: number, apiMe
                               actionCreator: (id: number) => followACType | unfollowACType) => {
     dispatch(setIsDisabledFollow(true, id))
     const responseUnfollow = await apiMethod(id)
-    if (responseUnfollow.resultCode === 0) {
+    if (responseUnfollow.resultCode === resultCodesEnum.success) {
         dispatch(actionCreator(id))
     }
     dispatch(setIsDisabledFollow(false, id))

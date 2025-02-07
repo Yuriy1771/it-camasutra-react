@@ -1,5 +1,5 @@
 import axios from "axios";
-import {profileType} from "../types/types";
+import {profileType, usersType} from "../types/types";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -7,15 +7,18 @@ const instance = axios.create({
     headers: {'API-KEY': '1d9719b2-4c93-4cca-b827-f6e8e5eb5596'},
 })
 
+type getUsersType = {items: usersType, totalCount: number, error: string}
+type followUnfollowType = {resultCode: resultCodesEnum, messages: string[], data:{}}
+
 export const usersAPI = {
     getUsersAPI(currentPage:number = 1, countUsersOfPage:number = 10) {
-        return instance.get(`users?page=${currentPage}&count=${countUsersOfPage}`).then(response => response.data)
+        return instance.get<getUsersType>(`users?page=${currentPage}&count=${countUsersOfPage}`).then(response => response.data)
     },
     followAPI(id:number) {
-        return instance.post(`follow/${id}`).then(response => response.data)
+        return instance.post<followUnfollowType>(`follow/${id}`).then(response => response.data)
     },
     unfollowAPI(id:number) {
-        return instance.delete(`follow/${id}`).then(response => response.data)
+        return instance.delete<followUnfollowType>(`follow/${id}`).then(response => response.data)
     }
 }
 export enum resultCodesEnum {success = 0, error = 1,}
