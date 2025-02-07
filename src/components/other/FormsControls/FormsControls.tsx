@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from './FormsControls.module.css'
-import {Field} from "redux-form";
+import {Field, WrappedFieldProps} from "redux-form";
 
-export const Textarea = ({input, meta, ...props}) => {
+export const Textarea: FC<WrappedFieldProps> = ({input, meta, ...props}) => {
     const hasError = meta.touched && meta.error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
@@ -14,7 +14,7 @@ export const Textarea = ({input, meta, ...props}) => {
     )
 }
 
-export const Input = ({input, meta, ...props}) => {
+export const Input: FC<WrappedFieldProps> = ({input, meta, ...props}) => {
     const hasError = meta.touched && meta.error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
@@ -26,10 +26,13 @@ export const Input = ({input, meta, ...props}) => {
     )
 }
 
-export const createField = (placeholder = '', name, component, required, maxLength = 0, type = '', text = '') => (
-    <div>
-        <Field placeholder={placeholder} name={name} component={component} validate={[required, maxLength]}
-               type={type}/>
-        {text}
-    </div>
-)
+export function createField<FormKeysType extends string>(placeholder: string | undefined = '', name: FormKeysType, component: FC<WrappedFieldProps>, required: any,
+                            maxLength: any = 0, type: string = '', text: string = '') {
+    return(
+        <div>
+            <Field placeholder={placeholder} name={name} component={component} validate={[required, maxLength]}
+                   type={type}/>
+            {text}
+        </div>
+    )
+}

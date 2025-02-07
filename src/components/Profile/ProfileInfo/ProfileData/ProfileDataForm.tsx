@@ -1,7 +1,7 @@
-import {Input, Textarea} from "../../../other/FormsControls/FormsControls.jsx";
+import {Input, Textarea} from "../../../other/FormsControls/FormsControls.tsx";
 import React, {FC} from "react";
 import {Field, reduxForm} from "redux-form";
-import {maxLengthCreator, required} from "../../../../utils/validators/validators.js";
+import {maxLengthCreator, required} from "../../../../utils/validators/validators.ts";
 import styles from "../../../other/FormsControls/FormsControls.module.css";
 import {profileType} from "../../../../types/types";
 
