@@ -1,4 +1,4 @@
-import {profileAPI} from "../api/api.ts";
+import {profileAPI, resultCodesEnum} from "../api/api.ts";
 import {stopSubmit} from "redux-form";
 import {photosType, postsType, profileType} from "../types/types";
 import {Dispatch} from "redux";
@@ -65,7 +65,7 @@ type deletePostACType = {type: typeof DELETE_POST, id: number}
 type setUserProfileACType = {type: typeof SET_USER_PROFILE, profile: profileType}
 type setProfileStatusACType = {type: typeof SET_STATUS, status: string}
 type setUserMainPhotoACType = {type: typeof SET_USER_PHOTO, mainPhoto: photosType}
-type setDataProfileInfoACType = {type: typeof SET_ABOUT_ME, data:string}
+type setDataProfileInfoACType = {type: typeof SET_ABOUT_ME, data:profileType}
 
 type actionsType = (addPostACType | deletePostACType | setUserProfileACType
                         | setUserMainPhotoACType | setDataProfileInfoACType | setProfileStatusACType)
@@ -75,7 +75,7 @@ export const deletePostAC = (id:number):deletePostACType => ({type: DELETE_POST,
 export const setUserProfile = (profile:profileType):setUserProfileACType => ({type: SET_USER_PROFILE, profile})
 export const setProfileStatus = (status:string):setProfileStatusACType => ({type: SET_STATUS, status})
 export const setUserMainPhoto = (mainPhoto:photosType):setUserMainPhotoACType => ({type: SET_USER_PHOTO, mainPhoto})
-export const setDataProfileInfo = (data:string):setDataProfileInfoACType => ({type: SET_ABOUT_ME, data})
+export const setDataProfileInfo = (data:profileType):setDataProfileInfoACType => ({type: SET_ABOUT_ME, data})
 
 export const getProfileAPIThunk = (userId:number) => async (dispatch: Dispatch<actionsType>, getState:() => appStateType) => {
     const responseProfile = await profileAPI.getProfileAPI(userId)
@@ -89,21 +89,21 @@ export const getProfileStatusThunk = (id:number) => async (dispatch:Dispatch<act
 
 export const updateProfileStatusThunk = (status:string) => async (dispatch:Dispatch<actionsType>, getUsers: () => appStateType) => {
     const responseProfileStatus = await profileAPI.updateProfileStatusAPI(status)
-    if (responseProfileStatus.resultCode === 0) {
+    if (responseProfileStatus.resultCode === resultCodesEnum.success) {
         dispatch(setProfileStatus(status))
     }
 }
 
 export const savePhotoThunk = (mainPhoto:any) => async (dispatch: Dispatch<actionsType>, getState:()=>appStateType) => {
     const response = await profileAPI.savePhotoAPI(mainPhoto)
-    if (response.resultCode === 0) {
+    if (response.resultCode === resultCodesEnum.success) {
         dispatch(setUserMainPhoto(response.data.photos))
     }
 }
 
-export const saveProfileInfoThunk = (data:string) => async (dispatch:Dispatch<actionsType>, getState:() => appStateType) => {
+export const saveProfileInfoThunk = (data:profileType) => async (dispatch:Dispatch<actionsType>, getState:() => appStateType) => {
     const response = await profileAPI.putProfileInfo(data)
-    if(response.resultCode === 0) {
+    if(response.resultCode === resultCodesEnum.success) {
         dispatch(setDataProfileInfo(data))
     } else {
         let errorMessage = response.messages.length > 0 ? response.messages[0] : 'something error'
