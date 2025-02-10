@@ -4,14 +4,14 @@ import {NavLink} from "react-router-dom";
 import user_avatar from "../../assets/images/user_avatar.png";
 import {usersType} from "../../types/types";
 
-type friendType = {user: usersType, isDisabledFollow:number[], followThunk:(id:number) => void, unfollowThunk:(id:number) => void}
-const Friend:FC<friendType> = ({user, isDisabledFollow, followThunk, unfollowThunk}) => {
+type friendType = {user: usersType, isDisabledFollow:number[], follow:(id:number) => void, unfollow:(id:number) => void}
+const Friend:FC<friendType> = ({user, isDisabledFollow, follow, unfollow}) => {
     const onClickFollow = (id):void => {
-        followThunk(id)
+        follow(id)
     }
 
     const onClickUnfollow = (id):void => {
-        unfollowThunk(id)
+        unfollow(id)
     }
     return (
         <div className={styles.userBlock}>

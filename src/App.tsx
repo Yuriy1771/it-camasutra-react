@@ -9,7 +9,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer.tsx";
 import HeaderContainer from "./components/Header/HeaderContainer.tsx";
 import {WithSuspense} from "./components/hoc/WithSuspense.jsx";
 const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer.tsx')))
-const FriendsContainer = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
+const FriendsPage = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
 const Login = WithSuspense(lazy(() => import('./components/Login/Login.tsx')))
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
                     <Route path='/' element={<Navigate to={'/profile'}/>}/>
                     <Route path='/profile/:userId?' element={<ProfileContainer/>}/>
                     <Route path='/messages/*' element={<DialogsContainer/>}/>
-                    <Route path='/friends/*' element={<FriendsContainer pageTitle={'samurai'}/>}/>
+                    <Route path='/friends/*' element={<FriendsPage/>}/>
                     <Route path='/news/*' element={<News/>}/>
                     <Route path='/music/*' element={<Music/>}/>
                     <Route path='/settings/*' element={<Settings/>}/>
