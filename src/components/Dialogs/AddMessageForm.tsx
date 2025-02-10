@@ -2,10 +2,10 @@ import React from 'react'
 import {Field} from "redux-form";
 import styles from './Dialogs.module.css'
 import {Textarea} from "../other/FormsControls/FormsControls.tsx";
-import {maxLengthCreator, required} from "../../utils/validators/validators.ts";
+import {fieldValidatorType, maxLengthCreator, required} from "../../utils/validators/validators.ts";
 
 const AddMessageForm = ({handleSubmit}) => {
-    const maxLength:number = maxLengthCreator(10)
+    const maxLength:fieldValidatorType = maxLengthCreator(10)
     return (
         <form onSubmit={handleSubmit}>
             <div className={styles.wrapperTextarea}>
