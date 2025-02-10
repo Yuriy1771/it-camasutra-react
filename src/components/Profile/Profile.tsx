@@ -4,12 +4,12 @@ import ProfileInfo, {profileInfoPropsType} from "./ProfileInfo/ProfileInfo.tsx";
 import MyPostsContainer from "./MyPosts/MyPostsContainer.tsx";
 
 type propsType = profileInfoPropsType
-const Profile:FC<propsType> = ({profile, updateProfileStatusThunk, status, isOwner, savePhotoThunk, saveProfileInfoThunk}) => {
+const Profile:FC<propsType> = ({isOwner, saveProfileInfoThunk}) => {
+
+
     return (
         <div className={styles.content}>
-            <ProfileInfo profile={profile} updateProfileStatusThunk={updateProfileStatusThunk}
-                         status={status} isOwner={isOwner} savePhotoThunk={savePhotoThunk}
-                         saveProfileInfoThunk={saveProfileInfoThunk}/>
+            <ProfileInfo isOwner={isOwner} saveProfileInfoThunk={saveProfileInfoThunk}/>
             <MyPostsContainer/>
         </div>
     )

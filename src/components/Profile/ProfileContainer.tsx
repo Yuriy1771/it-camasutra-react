@@ -12,11 +12,15 @@ import {profileType} from "../../types/types";
 import {appStateType} from "../../redux/redux-store";
 
 //26083 my id
-type mapStatePropsType = {profile: profileType, status: string, authorizedMyUserId: number, isAuth: boolean}
-type mapDispatchPropsType = {updateProfileStatusThunk: (status:string) => void, getProfileStatusThunk: (id:number) => void,
-                                getProfileAPIThunk:(id: number) => void, savePhotoThunk: (mainPhoto: any) => void,
-                                saveProfileInfoThunk:(data:string) => void}
+type mapStatePropsType = { profile: profileType, status: string, authorizedMyUserId: number, isAuth: boolean }
+type mapDispatchPropsType = {
+    updateProfileStatusThunk: (status: string) => void, getProfileStatusThunk: (id: number) => void,
+    getProfileAPIThunk: (id: number) => void, savePhotoThunk: (mainPhoto: any) => void,
+    saveProfileInfoThunk: (data: string) => void
+}
 type propsType = mapStatePropsType & mapDispatchPropsType
+
+
 //@ts-ignore
 class ProfileContainer extends React.Component<propsType> {
 
@@ -32,16 +36,15 @@ class ProfileContainer extends React.Component<propsType> {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.param.userId !== prevProps.param.userId) {
+        if (this.props.param.userId !== prevProps.param.userId) {
             this.refreshProfile()
         }
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
-                     updateProfileStatusThunk={this.props.updateProfileStatusThunk} isOwner={!this.props.param.userId}
-                     savePhotoThunk={this.props.savePhotoThunk} saveProfileInfoThunk={this.props.saveProfileInfoThunk}
+            <Profile {...this.props} isOwner={!this.props.param.userId}
+                     saveProfileInfoThunk={this.props.saveProfileInfoThunk}
             />
         )
     }

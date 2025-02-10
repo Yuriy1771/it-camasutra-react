@@ -1,8 +1,12 @@
 import React, {ChangeEvent, FC, useEffect, useState} from 'react'
+import {useDispatch, useSelector} from "react-redux";
+import {updateProfileStatusThunk} from "../../../../redux/profileReducer.ts";
+import {appStateType} from "../../../../redux/redux-store";
 
-type propsType = {status:string, updateProfileStatusThunk: (status: string) => void}
+type propsType = {status:string}
 
-const ProfileStatus:FC<propsType> = ({status, updateProfileStatusThunk}) => {
+const ProfileStatus:FC<propsType> = (props) => {
+    const status:string = useSelector((state:appStateType) => state.profilePage.status)
 
     let [editMode, setEditMode] = useState<boolean>(false)
     let [newStatus, setStatus] = useState<string>(status)
@@ -11,12 +15,14 @@ const ProfileStatus:FC<propsType> = ({status, updateProfileStatusThunk}) => {
         setStatus(status)
     }, [status])
 
+    const dispatch = useDispatch()
+
     const onActivateStatus = ():void => {
         setEditMode(true)
     }
     const deactivateStatus = ():void => {
         setEditMode(false)
-        updateProfileStatusThunk(newStatus)
+        dispatch(updateProfileStatusThunk(newStatus))
     }
 
     const onStatusChange = (event: ChangeEvent<HTMLInputElement>):void => {
