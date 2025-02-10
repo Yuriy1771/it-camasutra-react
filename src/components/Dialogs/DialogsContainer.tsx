@@ -1,12 +1,9 @@
-import {FC} from "react";
 import Dialogs from "./Dialogs.tsx";
 
-type propsType = {}
-
-const DialogsContainer: FC<propsType> = (props) => {
+const DialogsContainer = (props) => {
     return (
         <>
-        <Dialogs/>
+            <Dialogs/>
         </>
     )
 }
