@@ -28,3 +28,7 @@ export const getIsDisabledFollow = (state:appStateType) => {
 export const getCurrentPage = (state:appStateType) => {
     return state.friendsPage.currentPage
 }
+
+export const getTerm = (state:appStateType) => {
+    return state.friendsPage.filter
+}

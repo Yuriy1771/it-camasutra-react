@@ -11,8 +11,9 @@ type getUsersType = {items: usersType, totalCount: number, error: string}
 type followUnfollowType = {resultCode: resultCodesEnum, messages: string[], data:{}}
 
 export const usersAPI = {
-    getUsersAPI(currentPage:number = 1, countUsersOfPage:number = 10) {
-        return instance.get<getUsersType>(`users?page=${currentPage}&count=${countUsersOfPage}`).then(response => response.data)
+    getUsersAPI(currentPage:number = 1, countUsersOfPage:number = 10, term: string = '') {
+        debugger
+        return instance.get<getUsersType>(`users?page=${currentPage}&count=${countUsersOfPage}&term=${term.term}`).then(response => response.data)
     },
     followAPI(id:number) {
         return instance.post<followUnfollowType>(`follow/${id}`).then(response => response.data)

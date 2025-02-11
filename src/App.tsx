@@ -4,7 +4,7 @@ import Navbar from './components/Navbar/Navbar.tsx'
 import News from './components/News/News.tsx'
 import Music from './components/Music/Music.tsx'
 import Settings from "./components/Settings/Settings.tsx";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer.tsx";
 import HeaderContainer from "./components/Header/HeaderContainer.tsx";
 import {WithSuspense} from "./components/hoc/WithSuspense.jsx";
@@ -13,6 +13,9 @@ const FriendsPage = WithSuspense(lazy(() => import('./components/Friends/Friends
 const Login = WithSuspense(lazy(() => import('./components/Login/Login.tsx')))
 
 const App = () => {
+    // const location = useLocation()
+    // console.log(location)
+
     return (
         <div className="app_wrapper">
             <HeaderContainer/>
