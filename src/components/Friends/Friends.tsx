@@ -34,7 +34,7 @@ const Friends:FC<propsType> = () => {
     }
 
     const onFilterChanged = (filter: filterType) => {
-       dispatch(getUsersThunk(1, countUsersOfPage, filter))
+        dispatch(getUsersThunk(1, countUsersOfPage, filter))
     }
 
     const follow = (id:number) => {

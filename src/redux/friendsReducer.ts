@@ -13,7 +13,8 @@ let initialState: initialStateType = {
     isLoader: true,
     isDisabledFollow: [] as number[], //array of users ids
     filter: {
-        term: ''
+        term: '',
+        selectFilter: null as null | boolean,
     }
 }
 
@@ -45,7 +46,8 @@ const friendsReducer = (state = initialState, action: actionsType): initialState
                     : state.isDisabledFollow.filter(id => id !== action.id)
             }
         case "SET_FILTER":
-            return stateCopy = {...state, filter: action.term}
+            debugger
+            return stateCopy = {...state, filter: action.filter}
     }
     return state
 }
@@ -61,16 +63,15 @@ export const actions = {
     setTotalUsersCount: (usersCount: number) => ({type: 'SET_USERS_TOTAL_COUNT', usersCount} as const),
     setPreloader: (isLoader: boolean) => ({type: 'SET_PRELOADER', isLoader} as const),
     setIsDisabledFollow: (isDisabledFollow: boolean, id: number) => ({type: 'IS_DISABLED_FOLLOW', isDisabledFollow, id} as const),
-    setFilter: (term:string) => ({type: 'SET_FILTER', term} as const),
+    setFilter: (filter: filterType) => ({type: 'SET_FILTER', filter} as const),
 }
 
-export const getUsersThunk = (currentPage: number, countUsersOfPage: number, term: string) =>
+export const getUsersThunk = (currentPage: number, countUsersOfPage: number, filter: filterType) =>
     async (dispatch: Dispatch<actionsType>, getState: () => appStateType) => {
         dispatch(actions.setPreloader(true))
         dispatch(actions.setCurrentPage(currentPage))
-        debugger
-        dispatch(actions.setFilter(term))
-        const responseUsers = await usersAPI.getUsersAPI(currentPage, countUsersOfPage, term)
+        dispatch(actions.setFilter(filter))
+        const responseUsers = await usersAPI.getUsersAPI(currentPage, countUsersOfPage, filter.term, filter.selectFilter)
         dispatch(actions.setPreloader(false))
         dispatch(actions.setUsers(responseUsers.items))
         dispatch(actions.setTotalUsersCount(responseUsers.totalCount))

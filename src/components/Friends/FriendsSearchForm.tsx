@@ -18,6 +18,7 @@ const FriendsSearchForm = ({onFilterChanged}) => {
 
     const onSubmit:SubmitHandler<form> = (data:filterType) => {
         alert(JSON.stringify(data))
+        debugger
         onFilterChanged(data)
     }
 
@@ -26,11 +27,17 @@ const FriendsSearchForm = ({onFilterChanged}) => {
             <div>
                 <input className={styles.searchInput} placeholder={'search'} {...register('term', {
                     required: 'empty field'
-
                 })}/>
             </div>
+            <div>
+                <select {...register('selectFilter')}>
+                    <option value="true">followed</option>
+                    <option value="false">unfollowed</option>
+                    <option value="null">all</option>
+                </select>
+            </div>
 
-                <button className={styles.btnSearch} disabled={!isValid}>search</button>
+            <button className={styles.btnSearch} >search</button>
         </form>
     )
 }
