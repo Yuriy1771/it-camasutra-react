@@ -56,7 +56,7 @@ const ProfileInfo:FC<profileInfoPropsType> = ({isOwner, saveProfileInfoThunk}) =
                     <img src={profile.photos.large ? profile.photos.large : user_avatar_img}
                          className={styles.user_avatar} alt='user avatar'/>
                 </div>
-                {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+                {isOwner && <input className={styles.changeAvatarBtn} type={'file'} onChange={onMainPhotoSelected}/>}
             </div>
         </div>
     )

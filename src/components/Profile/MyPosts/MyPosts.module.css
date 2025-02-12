@@ -7,9 +7,16 @@
     height: 10%;
     background: none;
     border: none;
-    border-bottom: 1px solid black;
     outline: none;
     resize: none;
+    background: rgba(255, 210, 103, 0.36);
+    border-radius: 5px;
+    border-bottom: 2px solid transparent;
+    transition: border-color .3s;
+}
+
+.posts textarea:focus {
+    border-color: rgba(206, 145, 0, 0.36);
 }
 
 .inputWrapper {
@@ -17,7 +24,16 @@
 }
 
 .inputWrapper button {
-    width: 100px;
-    height: 25px;
+    height:34px;
+    margin-left: 5px;
+    border: none;
+    background: rgba(255, 210, 103, 0.36);
     cursor: pointer;
+    border-radius: 0px 10px 0px 10px;
+    font-size: 14px;
+}
+
+.inputWrapper button:hover {
+    transition: .5s;
+    background: rgba(206, 145, 0, 0.36);
 }

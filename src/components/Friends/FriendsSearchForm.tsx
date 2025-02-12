@@ -30,7 +30,7 @@ const FriendsSearchForm = ({onFilterChanged}) => {
                 })}/>
             </div>
             <div>
-                <select {...register('selectFilter')}>
+                <select className={styles.selectFilter} {...register('selectFilter')}>
                     <option value="true">followed</option>
                     <option value="false">unfollowed</option>
                     <option value="null">all</option>

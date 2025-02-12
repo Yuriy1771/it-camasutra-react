@@ -38,3 +38,19 @@
     transition: .5s;
     background: rgba(206, 145, 0, 0.36);
 }
+
+.selectFilter {
+    height:34px;
+    margin-left: 5px;
+    border: none;
+    background: rgba(255, 210, 103, 0.36);
+    cursor: pointer;
+    border-radius: 0px 10px 0px 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.selectFilter:hover {
+    transition: .5s;
+    background: rgba(206, 145, 0, 0.36);
+}

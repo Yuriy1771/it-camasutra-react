@@ -10,7 +10,7 @@ const ProfileDataForm:FC<propsType> = ({handleSubmit, profile, error}) => {
     const maxLength = maxLengthCreator(50)
     return (
         <form onSubmit={handleSubmit}>
-            <button>Save</button>
+            <button className={styles.saveinfo}>Save</button>
             {error && <div className={styles.formSummaryError}>
                 {error}
             </div>}
