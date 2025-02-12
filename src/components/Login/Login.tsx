@@ -6,7 +6,6 @@ import {Navigate} from "react-router-dom";
 import {appStateType} from "../../redux/redux-store";
 import styles from './LoginForm.module.css'
 
-export type LoginFormOwnProps = {captcha: string|null}
 type propsType = {}
 
 const Login:FC<propsType> = () => {
@@ -23,7 +22,7 @@ const Login:FC<propsType> = () => {
         return <Navigate to={'/profile'}/>
     }
     return (
-        <div>
+        <div className={styles.wrapperLogin}>
             <div className={styles.loginText}>
                 <h2>LOGIN</h2>
             </div>

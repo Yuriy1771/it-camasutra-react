@@ -1,5 +1,6 @@
-.wrapperForm {
+.wrapperLogin {
     display: flex;
+    text-align: center;
     flex-direction: column;
     border: 1px solid black;
     align-items: center;
@@ -76,7 +77,12 @@
 }
 
 .loginText {
+    width: 100px;
     text-align: center;
+}
+
+.loginText h2 {
+    border-bottom: 2px solid black;
 }
 
 .wrapperCaptcha {
@@ -101,4 +107,8 @@
     border-radius: 5px;
     background: none;
     background: rgba(255, 210, 103, 0.36);
+}
+
+.errors span {
+    color: red;
 }

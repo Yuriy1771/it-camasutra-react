@@ -1,17 +1,39 @@
 import React from 'react'
-import {Field} from "redux-form";
 import styles from './Dialogs.module.css'
-import {Textarea} from "../other/FormsControls/FormsControls.tsx";
-import {fieldValidatorType, maxLengthCreator, required} from "../../utils/validators/validators.ts";
+import {useForm} from "react-hook-form";
+import {addMessageAC} from "../../redux/dialogsReducer.ts";
+import {useDispatch} from "react-redux";
 
-const AddMessageForm = ({handleSubmit}) => {
-    const maxLength:fieldValidatorType = maxLengthCreator(10)
+
+const AddMessageForm = (props) => {
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: {
+            isValid
+        }
+    } = useForm()
+
+    const dispatch = useDispatch()
+
+    const onSubmit = (formData):void => {
+        dispatch(addMessageAC(formData.newTextMessage))
+        reset()
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.wrapperTextarea}>
-                <Field component={Textarea} validate={[required, maxLength]} name={'newTextMessage'}
-                       placeholder={'Enter your message'}/>
-                <button>send</button>
+                <textarea placeholder={'Enter your message'} {...register('newTextMessage', {
+                    required: 'field empty',
+                    maxLength: {
+                        value: 200,
+                        message: 'maximum 200 symbols'
+                    }
+                })}/>
+                <button disabled={!isValid}>send</button>
             </div>
         </form>
     )

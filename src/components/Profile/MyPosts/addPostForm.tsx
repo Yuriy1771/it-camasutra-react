@@ -1,20 +1,39 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from "./MyPosts.module.css";
-import {Field} from "redux-form";
-import {maxLengthCreator, required} from "../../../utils/validators/validators.ts";
-import {Textarea} from "../../other/FormsControls/FormsControls.tsx";
+import {addPostAC} from "../../../redux/profileReducer.ts";
+import {useDispatch} from "react-redux";
+import {useForm} from "react-hook-form";
 
-const maxLength = maxLengthCreator(300)
+const AddPostForm:FC = (props) => {
 
-const addPostForm = ({handleSubmit}) => {
+
+    const {
+        handleSubmit,
+        register,
+        formState: {
+            isValid,
+        },
+        reset
+    } = useForm()
+
+    const dispatch = useDispatch()
+    const onSubmit = (formData):void => {
+        dispatch(addPostAC(formData.newTextPost))
+        reset()
+    }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputWrapper}>
-                <Field component={Textarea} name={'newTextPost'} placeholder={'write post'}
-                       validate={[required, maxLength]}/>
-                <button>add post</button>
+                <textarea placeholder={'write post'} {...register('newTextPost', {
+                    required: 'field empty',
+                    maxLength: {
+                        value: 200,
+                        message: 'maximum 200 symbols',
+                    }
+                })}/>
+                <button disabled={!isValid}>add post</button>
             </div>
         </form>
     )
 }
-export default addPostForm
+export default AddPostForm
