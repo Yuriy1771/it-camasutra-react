@@ -18,7 +18,6 @@ const FriendsSearchForm = ({onFilterChanged}) => {
 
     const onSubmit:SubmitHandler<form> = (data:filterType) => {
         alert(JSON.stringify(data))
-        debugger
         onFilterChanged(data)
     }
 

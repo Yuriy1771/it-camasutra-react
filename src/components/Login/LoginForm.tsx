@@ -1,32 +1,44 @@
 import React, {FC} from 'react'
-import {InjectedFormProps} from "redux-form";
-import {createField, Input} from "../other/FormsControls/FormsControls.tsx";
-import {maxLengthCreator, required} from "../../utils/validators/validators.ts";
-import styles from '../other/FormsControls/FormsControls.module.css'
-import {LoginFormOwnProps} from "./Login";
+import styles from './LoginForm.module.css'
+import {useForm} from "react-hook-form";
 
-export type loginFormType = { email: string, password: string, rememberMe: boolean, captcha: string }
-type loginFormValuesTypeKeys = Extract<keyof loginFormType,string>
+export type loginFormType = { onSubmit: (data: any) => any, captcha: string }
 
-
-const LoginForm:FC<InjectedFormProps<loginFormType,LoginFormOwnProps> & LoginFormOwnProps> = ({handleSubmit, error, captcha}) => {
-
-    const maxLength = maxLengthCreator(50)
+const LoginForm: FC<loginFormType> = ({onSubmit, captcha}) => {
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            isValid,
+        }
+    } = useForm()
 
     return (
-        <form onSubmit={handleSubmit}>
-            {createField<loginFormValuesTypeKeys>('email', 'email', Input, required, maxLength)}
-            {createField<loginFormValuesTypeKeys>('password', 'password', Input, required, maxLength, 'password')}
-            {createField<loginFormValuesTypeKeys>(undefined, 'rememberMe', Input, required, maxLength, 'checkbox', 'remember me')}
-            {error && <div className={styles.formSummaryError}>
-                {error}
-            </div>}
-            <div>
-                <button>Login</button>
-            </div>
-            {captcha && <img src={captcha} alt="captcha"/>}
-            {captcha && createField<loginFormValuesTypeKeys>('enter symbols from picture', 'captcha', Input, required, maxLength) }
-        </form>
+        <div className={styles.wrapperForm}>
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+                {/*<div>{errors?.email ? errors?.email.message : 'error'}</div>*/}
+                <input className={styles.emailInput} type="text" {...register('email', {
+                    required: "field required"
+                })}/>
+                <input className={styles.passwordInput} type="password" {...register('password')}/>
+                <div>
+                    <label htmlFor="checkbox">
+                        <input id='checkbox' className={styles.checkboxInput}
+                               type="checkbox" {...register('rememberMe')}/>
+                        <span className={styles.rememberMeText}>remember me</span>
+                    </label>
+                </div>
+                <div className={styles.wrapperCaptcha}>
+                    {captcha && <img className={styles.captcha} src={captcha} alt="captcha"/>}
+                    {captcha && <input className={styles.captchaInput} placeholder={'enter captcha'}
+                                       type="text" {...register('captcha')}/>}
+                </div>
+                <div>
+                    <button className={styles.loginBtn}>login</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

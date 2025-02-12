@@ -1,14 +1,12 @@
 import React, {FC} from 'react'
-import LoginForm, {loginFormType} from "./LoginForm.tsx";
-import {reduxForm} from "redux-form";
+import LoginForm from "./LoginForm.tsx";
 import { useDispatch, useSelector} from "react-redux";
-import {loginThunk, logoutThunk} from "../../redux/authReducer.ts";
+import {loginThunk} from "../../redux/authReducer.ts";
 import {Navigate} from "react-router-dom";
 import {appStateType} from "../../redux/redux-store";
+import styles from './LoginForm.module.css'
 
 export type LoginFormOwnProps = {captcha: string|null}
-const LoginFormRedux = reduxForm<loginFormType, LoginFormOwnProps>({form: 'login',})(LoginForm)
-
 type propsType = {}
 
 const Login:FC<propsType> = () => {
@@ -26,7 +24,10 @@ const Login:FC<propsType> = () => {
     }
     return (
         <div>
-        <LoginFormRedux onSubmit={onSubmit} captcha={captcha}/>
+            <div className={styles.loginText}>
+                <h2>LOGIN</h2>
+            </div>
+        <LoginForm onSubmit={onSubmit} captcha={captcha}/>
         </div>
     )
 }
