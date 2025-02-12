@@ -46,7 +46,6 @@ const friendsReducer = (state = initialState, action: actionsType): initialState
                     : state.isDisabledFollow.filter(id => id !== action.id)
             }
         case "SET_FILTER":
-            debugger
             return stateCopy = {...state, filter: action.filter}
     }
     return state

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './FriendsSearchForm.module.css'
 import {SubmitHandler, useForm} from "react-hook-form";
-import {filterType} from "../../redux/friendsReducer";
+import {filterType} from "../../redux/friendsReducer.ts";
 
 type form = {
     term: string,
@@ -15,7 +15,6 @@ const FriendsSearchForm = ({onFilterChanged}) => {
         },
         handleSubmit,
     } = useForm<form>()
-
     const onSubmit:SubmitHandler<form> = (data:filterType) => {
         alert(JSON.stringify(data))
         onFilterChanged(data)

@@ -1,6 +1,5 @@
 import axios from "axios";
 import {profileType, usersType} from "../types/types";
-import {filterType} from "../redux/friendsReducer";
 
 export const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',

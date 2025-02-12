@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from 'react'
+import React, {lazy} from 'react'
 import './App.css';
 import Navbar from './components/Navbar/Navbar.tsx'
 import News from './components/News/News.tsx'
@@ -13,9 +13,6 @@ const FriendsPage = WithSuspense(lazy(() => import('./components/Friends/Friends
 const Login = WithSuspense(lazy(() => import('./components/Login/Login.tsx')))
 
 const App = () => {
-    // const location = useLocation()
-    // console.log(location)
-
     return (
         <div className="app_wrapper">
             <HeaderContainer/>
