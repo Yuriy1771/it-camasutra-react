@@ -4,7 +4,7 @@ import DialogItem from "./DialogItem/DialogItem.tsx"
 import MessageItem from "./MessageItem/MessageItem.tsx"
 import AddMessageForm from "./AddMessageForm.tsx";
 import {appStateType} from "../../redux/redux-store";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 type propsType = {}
 
@@ -27,8 +27,10 @@ const Dialogs:FC<propsType> = (props) => {
             <div className={styles.dialogs}>
                 {componentDialogs}
             </div>
-            <div className={styles.messages}>
+            <div className={styles.wrapperMessages}>
+                <div className={styles.messages}>
                 {componentMessages}
+                </div>
                 <div className={styles.userInputBlock}>
                    <AddMessageForm />
                 </div>

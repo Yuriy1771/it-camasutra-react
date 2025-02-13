@@ -19,14 +19,16 @@ const LoginForm: FC<loginFormType> = ({onSubmit, captcha}) => {
         <div className={styles.wrapperForm}>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 {/*<div>{errors?.email ? errors?.email.message : 'error'}</div>*/}
-                <input className={styles.emailInput} type="text" {...register('email', {
+                <input placeholder={'email'}
+                    className={styles.emailInput} type="text" {...register('email', {
                     required: "field required",
                     maxLength: {
                         value: 50,
                         message: 'too many symbols',
                     }
                 })}/>
-                <input className={styles.passwordInput} type="password" {...register('password', {
+                <input placeholder={'password'}
+                    className={styles.passwordInput} type="password" {...register('password', {
                     required: 'field required',
                     maxLength: {
                         value: 50,

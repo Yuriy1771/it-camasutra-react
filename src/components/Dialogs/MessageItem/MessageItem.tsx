@@ -6,7 +6,7 @@ type propsType = {message: string}
 const MessageItem:FC<propsType> = ({message}) => {
     return (
         <div className={styles.messagesWindow}>
-                {message}
+                <div><p>{message}</p></div>
         </div>
     )
 }

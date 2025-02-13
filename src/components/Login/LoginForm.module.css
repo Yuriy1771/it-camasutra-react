@@ -2,15 +2,14 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    border: 1px solid black;
     align-items: center;
 }
 
 .form {
-    width: 400px;
-    border: 1px solid black;
+    width: 500px;
     text-align: center;
     padding: 20px 10px;
+    background-color: rgba(236, 216, 255, 0.3);
 }
 
 .emailInput {
@@ -25,13 +24,14 @@
     transition: border-color .5s;
     border-radius: 5px;
     background: none;
-    background: rgba(255, 210, 103, 0.36);
+    border-bottom: 1px solid rgba(209, 161, 255, 0.3);
+
 }
 
 .emailInput:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
 
 .emailInput:focus {
-    border-color: rgba(206, 145, 0, 0.36);
+    border-color: rgba(190, 127, 250, 0.3);
 }
 
 .passwordInput {
@@ -46,13 +46,14 @@
     transition: border-color .3s;
     border-radius: 5px;
     background: none;
-    background: rgba(255, 210, 103, 0.36);
+    border-bottom: 1px solid rgba(209, 161, 255, 0.3);
+
 }
 
 .passwordInput:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
 
 .passwordInput:focus {
-    border-color: rgba(206, 145, 0, 0.36);
+    border-color: rgba(190, 127, 250, 0.3);
 }
 
 .checkboxInput {
@@ -65,7 +66,7 @@
     height: 40px;
     margin: 5px;
     border: none;
-    background: rgba(255, 210, 103, 0.36);
+    background: rgba(209, 161, 255, 0.3);
     cursor: pointer;
     border-radius: 0px 10px 0px 10px;
     font-size: 14px;
@@ -73,7 +74,7 @@
 
 .loginBtn:hover {
     transition: .5s;
-    background: rgba(206, 145, 0, 0.36);
+    background: rgba(190, 127, 250, 0.3);
 }
 
 .loginText {
@@ -106,7 +107,11 @@
     transition: border-color .3s;
     border-radius: 5px;
     background: none;
-    background: rgba(255, 210, 103, 0.36);
+    border-bottom: 1px solid rgba(209, 161, 255, 0.3);
+}
+
+.captchaInput:focus {
+    border-color: rgba(190, 127, 250, 0.3);
 }
 
 .errors span {

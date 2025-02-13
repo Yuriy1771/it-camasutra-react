@@ -24,7 +24,7 @@ const AddMessageForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <div className={styles.wrapperTextarea}>
                 <textarea placeholder={'Enter your message'} {...register('newTextMessage', {
                     required: 'field empty',

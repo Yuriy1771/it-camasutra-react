@@ -11,7 +11,7 @@
     border-right: 1px solid black;
 }
 
-.messages {
+.wrapperMessages {
     margin-top: 10px;
 }
 
@@ -41,23 +41,22 @@
     height: 10%;
     background: none;
     border: none;
-    background: rgba(255, 210, 103, 0.36);
     outline: none;
     resize: none;
     border-radius: 5px;
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid rgba(209, 161, 255, 0.3);
     transition: border-color .3s;
 }
 
 .wrapperTextarea textarea:focus {
-    border-color: rgba(206, 145, 0, 0.36);
+    border-color: rgba(190, 127, 250, 0.3);
 }
 
 .wrapperTextarea button {
     height:34px;
     margin-left: 5px;
     border: none;
-    background: rgba(255, 210, 103, 0.36);
+    background: rgba(209, 161, 255, 0.3);
     cursor: pointer;
     border-radius: 0px 10px 0px 10px;
     font-size: 14px;
@@ -65,5 +64,9 @@
 
 .wrapperTextarea button:hover {
     transition: .5s;
-    background: rgba(206, 145, 0, 0.36);
+    background: rgba(190, 127, 250, 0.3);
+}
+
+.messages {
+    height: 300px
 }
