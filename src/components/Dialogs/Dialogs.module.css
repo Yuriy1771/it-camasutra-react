@@ -8,11 +8,15 @@
 .dialogs {
     grid-area: dialog;
     margin: 10px;
-    border-right: 1px solid black;
+    background-color: rgba(236, 216, 255, 0.3);
+    border-right: 2px solid rgba(190, 127, 250, 0.3);
+
 }
 
 .wrapperMessages {
+    width: 95%;
     margin-top: 10px;
+    background-color: rgba(236, 216, 255, 0.3);
 }
 
 .userInputBlock {

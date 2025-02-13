@@ -20,7 +20,7 @@ const ProfileDataForm:FC<propsType> = ({handleSubmit, profile, error}) => {
             <div className={styles.itemAboutMe}>
                 <b>About me : </b><Field component={Input} placeholder='about me' name='aboutMe' validate={[required, maxLength]}/>
             </div>
-            <div className={styles.itemAboutMe}>
+            <div className={styles.itemAboutMeCheckbox}>
                 <b>Looking for a job : </b><Field component={Input} type='checkbox' name='lookingForAJob' validate={[required, maxLength]}/>
             </div>
             <div className={styles.itemAboutMe}>

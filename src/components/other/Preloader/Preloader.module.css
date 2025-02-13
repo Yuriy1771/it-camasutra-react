@@ -1,3 +1,13 @@
+.wrapperPreloader {
+    width: 1250px;
+    height: 1120px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+}
+
 .preloader {
-    width: 50px;
+    width: 100px;
 }

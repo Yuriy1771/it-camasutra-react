@@ -15,7 +15,7 @@ let initialState: initialStateType = {
     filter: {
         term: '',
         selectFilter: null as null | boolean,
-    }
+    },
 }
 
 const friendsReducer = (state = initialState, action: actionsType): initialStateType => {
