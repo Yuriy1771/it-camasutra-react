@@ -1,6 +1,6 @@
 .header {
     grid-area: header;
-    /*background-color: yellow;*/
+    background-color: rgba(236, 216, 255, 0.3);
     text-align: center;
     height: 64px;
 }
@@ -36,10 +36,12 @@
 .logout {
     background: none;
     border: none;
-    border-bottom: 1px solid black;
+    border-radius: 0 10px 0 10px;
+    background: rgba(209, 161, 255, 0.3);
     cursor: pointer;
 }
 
 .logout:hover {
-    color: #524800;
+    transition: .3s;
+    background: rgba(190, 127, 250, 0.3);
 }

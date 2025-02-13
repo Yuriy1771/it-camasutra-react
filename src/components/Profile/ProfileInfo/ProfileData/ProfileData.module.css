@@ -3,18 +3,23 @@
     margin-top: 5px;
     background: none;
     border: none;
-    border-bottom: 1px dashed black;
+    border-bottom: 1px dashed rgba(167, 84, 255, 0.3);
     cursor: pointer;
     font-size: 16px;
+}
+
+.showMoreBtn:hover {
+    transition: .3s;
+    box-shadow: 0 -5px 4px -5px rgba(73, 34, 80, 0.14) inset;
 }
 
 .editBtn {
     width: 200px;
     height: 25px;
-    border: .5px solid black;
-    border-radius: 5px;
     cursor: pointer;
-    background: white;
+    border-radius: 0 10px 0 10px;
+    border: none;
+    background: rgba(209, 161, 255, 0.3);
     margin-top: 10px
 }
 

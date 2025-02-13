@@ -1,10 +1,10 @@
 .saveBtn {
     width: 200px;
     height: 25px;
-    border: .5px solid black;
-    border-radius: 5px;
+    border: none;
+    border-radius: 0 10px 0px 10px;
     cursor: pointer;
-    background: white;
+    background: rgba(209, 161, 255, 0.3);
     margin-top: 10px
 }
 
