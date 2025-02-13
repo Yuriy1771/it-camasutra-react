@@ -6,11 +6,11 @@
     "nav content";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  width: 1200px;
+  width: 1500px;
+  height: 1000px;
 }
 
 .app_wrapper_content {
   grid-area: content;
-  background-color: yellow;
   border: 1px solid black;
 }

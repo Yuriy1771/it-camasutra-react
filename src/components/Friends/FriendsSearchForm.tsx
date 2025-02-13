@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './FriendsSearchForm.module.css'
 import {SubmitHandler, useForm} from "react-hook-form";
 import {filterType} from "../../redux/friendsReducer.ts";
+import {DatePicker} from "antd";
 
 type form = {
     term: string,

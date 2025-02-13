@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import styles from "./Friends.module.css";
 import {NavLink} from "react-router-dom";
-import user_avatar from "../../assets/images/user_avatar.png";
+import user_avatar from "../../assets/images/userAvatar3.png";
 import {usersType} from "../../types/types";
 
 type friendType = {user: usersType, isDisabledFollow:number[], follow:(id:number) => void, unfollow:(id:number) => void}

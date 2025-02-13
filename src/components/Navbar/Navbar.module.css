@@ -1,9 +1,6 @@
 .nav {
     grid-area: nav;
-    background-color: yellow;
-    border: 1px solid black;
     text-align: center;
-    align-self: start;
 }
 .item {
     margin: 5px;
@@ -12,17 +9,17 @@
 }
 
 .item:hover {
-    background-color: rgb(237, 237, 0);
+    background-color: rgba(167, 84, 255, 0.3);
     transition: .2s;
 }
 .item a {
     color: black;
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: none;
     display: block;
 }
 
 .item a.active {
     color: blueviolet;
-    font-size: 18px;
+    font-size: 22px;
 }
