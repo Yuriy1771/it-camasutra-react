@@ -1,0 +1,32 @@
+.showMoreBtn {
+    width: 100px;
+    margin-top: 5px;
+    background: none;
+    border: none;
+    border-bottom: 1px dashed black;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.editBtn {
+    width: 200px;
+    height: 25px;
+    border: .5px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    background: white;
+    margin-top: 10px
+}
+
+.editBtn:hover {
+    background-color: rgba(167, 84, 255, 0.3);
+    transition: .5s;
+}
+
+.wrapperEditBtn {
+    grid-area: btnEdit;
+}
+
+.itemAboutMe {
+    margin-top: 2px;
+}

@@ -1,18 +1,19 @@
 .item_post {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin: 10px 0 10px 0;
     border-bottom: 1px solid rgb(179, 182, 123);
 }
 
 .post_user_avatar {
-    width: 50px;
+    width: 70px;
     border-radius: 10px;
 }
 
 .post_text {
     text-align: center;
     margin-left: 5px;
+    font-size: 20px;
 }
 
 .like_post img {

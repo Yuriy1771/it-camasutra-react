@@ -17,11 +17,11 @@ const MyPosts:FC<propsType> = React.memo((props) => {
 
     return (
         <div className={styles.myPosts}>
-            write post:
+            <p className={styles.writePostText}>write post:</p>
             <div className={styles.posts}>
                 <AddPostForm />
                 <div className={styles.wrapperMyPosts}>
-                <span>My posts:</span>
+                <p className={styles.writePostText}>My posts:</p>
                 {componentPosts}
                 </div>
             </div>

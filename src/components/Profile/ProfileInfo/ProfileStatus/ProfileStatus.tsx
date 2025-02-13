@@ -2,6 +2,7 @@ import React, {ChangeEvent, FC, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {updateProfileStatusThunk} from "../../../../redux/profileReducer.ts";
 import {appStateType} from "../../../../redux/redux-store";
+import styles from '../ProfileInfo.module.css'
 
 type propsType = {status:string}
 
@@ -32,8 +33,8 @@ const ProfileStatus:FC<propsType> = (props) => {
 
     return (
         <div> {editMode
-            ? <div><input type='text' autoFocus={true} onBlur={deactivateStatus} onChange={onStatusChange} value={newStatus}/></div>
-            : <div><span onDoubleClick={onActivateStatus}>{status ? status : 'write status'}</span></div>
+            ? <div><input className={styles.inputStatus} type='text' autoFocus={true} onBlur={deactivateStatus} onChange={onStatusChange} value={newStatus}/></div>
+            : <div className={styles.status}><span onDoubleClick={onActivateStatus}>{status ? status : 'write status'}</span></div>
         }
         </div>
     )
