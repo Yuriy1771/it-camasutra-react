@@ -1,10 +1,13 @@
 .myPosts {
     padding: 5px;
+    margin-top: 30px;
+    background-color: rgba(236, 216, 255, 0.3);
+    border-radius: 5px;
 }
 
 .posts textarea {
-    width: 500px;
-    height: 10%;
+    width: 600px;
+    height: 50px;
     background: none;
     border: none;
     outline: none;
@@ -36,4 +39,8 @@
 .inputWrapper button:hover {
     transition: .5s;
     background: rgba(206, 145, 0, 0.36);
+}
+
+.wrapperMyPosts {
+    margin-top: 40px;
 }

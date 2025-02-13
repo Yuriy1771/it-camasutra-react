@@ -3,6 +3,9 @@
     grid-template-areas: 'avatar name';
     grid-template-columns: 1fr 5fr;
     margin-top: 5px;
+    background-color: rgba(236, 216, 255, 0.3);
+    border-radius: 5px;
+
 }
 
 .wrapperAvatar {
@@ -30,4 +33,26 @@
 
 .changeAvatarBtn {
 
+}
+
+/*.wrapperAboutMeAndContacts {*/
+/*    display: grid;*/
+/*    grid-template-areas: 'aboutMe contacts';*/
+/*}*/
+
+/*.aboutMe {*/
+/*    grid-area: aboutMe;*/
+/*}*/
+
+/*.contacts {*/
+/*    grid-area: contacts;*/
+/*}*/
+
+.showMoreBtn {
+    width: 100px;
+    background: none;
+    border: none;
+    border-bottom: 1px dashed black;
+    cursor: pointer;
+    font-size: 16px;
 }

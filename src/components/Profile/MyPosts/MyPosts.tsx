@@ -20,8 +20,10 @@ const MyPosts:FC<propsType> = React.memo((props) => {
             write post:
             <div className={styles.posts}>
                 <AddPostForm />
+                <div className={styles.wrapperMyPosts}>
                 <span>My posts:</span>
                 {componentPosts}
+                </div>
             </div>
         </div>
     )
