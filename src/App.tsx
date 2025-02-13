@@ -8,6 +8,7 @@ import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer.tsx";
 import HeaderContainer from "./components/Header/HeaderContainer.tsx";
 import {WithSuspense} from "./components/hoc/WithSuspense.jsx";
+
 const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer.tsx')))
 const FriendsPage = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
 const Login = WithSuspense(lazy(() => import('./components/Login/Login.tsx')))
