@@ -25,6 +25,9 @@ const Navbar:FC = (props) => {
                 <NavLink to='/music' className={ActiveLink}>Music</NavLink>
             </div>
             <div className={styles.item}>
+                <NavLink to='/chat' className={ActiveLink}>Chat</NavLink>
+            </div>
+            <div className={styles.item}>
                 <NavLink to='/settings' className={ActiveLink}>Settings</NavLink>
             </div>
         </nav>

@@ -12,6 +12,7 @@ import {WithSuspense} from "./components/hoc/WithSuspense.jsx";
 const DialogsContainer = WithSuspense(lazy(() => import('./components/Dialogs/DialogsContainer.tsx')))
 const FriendsPage = WithSuspense(lazy(() => import('./components/Friends/FriendsContainer.tsx')))
 const Login = WithSuspense(lazy(() => import('./components/Login/Login.tsx')))
+const ChatPage = WithSuspense(lazy(() => import('./pages/Chat/ChatPage.tsx')))
 
 const App = () => {
     return (
@@ -28,6 +29,7 @@ const App = () => {
                     <Route path='/music/*' element={<Music/>}/>
                     <Route path='/settings/*' element={<Settings/>}/>
                     <Route path='/login/*' element={<Login/>}/>
+                    <Route path='/chat/*' element={<ChatPage />}/>
                     <Route path='*' element={<div>404 NOT FOUND</div>}/>
                 </Routes>
             </div>

@@ -8,11 +8,11 @@
     margin: 5px;
     padding: 5px;
     cursor: pointer;
-    border-radius: 0px 10px 0px 10px;
+    border-radius: 0 10px 0 10px;
 }
 
 .item:hover {
-    background-color: rgba(190, 127, 250, 0.3);
+    background-color: rgba(211, 166, 253, 0.3);
     transition: .2s;
 }
 .item a {

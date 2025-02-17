@@ -62,7 +62,7 @@
     border: none;
     background: rgba(209, 161, 255, 0.3);
     cursor: pointer;
-    border-radius: 0px 10px 0px 10px;
+    border-radius: 0 10px 0 10px;
     font-size: 14px;
 }
 

@@ -1,0 +1,67 @@
+.wrapperTextarea {
+    display: flex;
+    margin: 10px 0 10px 0;
+    justify-content: center;
+}
+
+.wrapperTextarea textarea {
+    width: 500px;
+    height: 10%;
+    background: none;
+    border: none;
+    outline: none;
+    resize: none;
+    border-radius: 5px;
+    border-bottom: 2px solid rgba(209, 161, 255, 0.3);
+    transition: border-color .3s;
+}
+
+.wrapperTextarea textarea:focus {
+    border-color: rgba(190, 127, 250, 0.3);
+}
+
+.wrapperTextarea button {
+    height:34px;
+    margin-left: 5px;
+    border: none;
+    background: rgba(209, 161, 255, 0.3);
+    cursor: pointer;
+    border-radius: 0 10px 0 10px;
+    font-size: 14px;
+}
+
+.wrapperTextarea button:hover {
+    transition: .5s;
+    background: rgba(190, 127, 250, 0.3);
+}
+
+.wrapperMessages {
+    height: 900px;
+    overflow-Y: auto;
+}
+
+.wrapperMessage {
+    margin-top: 5px;
+    background: rgba(236, 216, 255, 0.3);
+    border-radius: 5px;
+}
+
+.wrapperImg {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.wrapperImg img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.wrapperImg p {
+    margin-left: 5px;
+}
+
+.message {
+    margin-left: 5px;
+}
