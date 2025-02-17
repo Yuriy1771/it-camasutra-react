@@ -88,5 +88,4 @@ export const captchaThunk = () => async (dispatch: Dispatch<actionsType>, getSta
     dispatch(setCaptcha(captchaUrl))
 }
 
-
 export default authReducer
