@@ -1,10 +1,10 @@
 import React, {FC} from 'react'
 import {Chat} from "./Chat.tsx";
 
-const ChatPage:FC = () => {
+const ChatPage: FC = () => {
     return (
         <div>
-            <Chat />
+            <Chat/>
         </div>
     )
 }
