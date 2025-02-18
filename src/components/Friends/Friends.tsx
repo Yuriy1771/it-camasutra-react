@@ -23,7 +23,6 @@ const Friends:FC<propsType> = () => {
     const users = useSelector(getUsersSelector)
     const isDisabledFollow = useSelector(getIsDisabledFollow)
     const term = useSelector(getTerm)
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()

@@ -5,6 +5,7 @@ import friendsReducer from "./friendsReducer.ts";
 import authReducer from "./authReducer.ts";
 import {thunk} from 'redux-thunk'
 import {reducer as formReducer} from 'redux-form'
+import chatReducer from "./chat-reducer.ts";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -12,6 +13,7 @@ let rootReducer = combineReducers({
     friendsPage: friendsReducer,
     auth: authReducer,
     form: formReducer,
+    chatPage: chatReducer,
 })
 
 type rootReducerType = typeof rootReducer
