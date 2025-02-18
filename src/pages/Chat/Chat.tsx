@@ -13,7 +13,7 @@ export type chatMessageType = {
 
 export const Chat: FC = () => {
     const dispatch = useDispatch()
-
+    const status = useSelector((state: appStateType) => state.chatPage.status)
 
     useEffect(() => {
         dispatch(setMessageThunk())
@@ -24,8 +24,12 @@ export const Chat: FC = () => {
 
     return (
         <>
-            <Messages/>
-            <AddMessageForm/>
+            {status === 'error' ? <div>Error. please refresh the page</div> :
+                <>
+                <Messages/>
+                <AddMessageForm/>
+                </>
+            }
         </>
     )
 }
@@ -33,7 +37,6 @@ export const Chat: FC = () => {
 
 export const Messages: FC<{}> = (props) => {
     const messages = useSelector((state: appStateType) => state.chatPage.messages)
-    console.log(messages)
     return (
         <div className={styles.wrapperMessages}>
             {messages.map((message, index) => <Message key={index} message={message}/>)}
@@ -55,10 +58,11 @@ const Message: FC<{ message: chatMessageType }> = ({message}) => {
 }
 
 const AddMessageForm: FC<{}> = (props) => {
-    const dispatch = useDispatch()
-
     const [message, setMessage] = useState('')
-    const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
+
+    const dispatch = useDispatch()
+    const status = useSelector((state: appStateType) => state.chatPage.status)
+
 
     const onSendMessage = () => {
         if (message === '') return
@@ -69,7 +73,7 @@ const AddMessageForm: FC<{}> = (props) => {
     return (
         <div className={styles.wrapperTextarea}>
             <textarea onChange={e => setMessage(e.currentTarget.value)} value={message}></textarea>
-            <button onClick={onSendMessage} disabled={false}>send</button>
+            <button onClick={onSendMessage}>send</button>
         </div>
     )
 }
