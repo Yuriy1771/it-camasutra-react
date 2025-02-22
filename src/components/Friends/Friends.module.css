@@ -31,15 +31,31 @@
 }
 
 .unfollow {
-    background-color: #fa7b7b;
-    cursor: pointer;
+    height:20px;
+    margin-left: 5px;
     border: none;
-    box-shadow: 0px 0px 5px 1px #9a3939;
+    background: rgba(167, 70, 255, 0.44);
+    cursor: pointer;
+    border-radius: 0 10px 0 10px;
+    font-size: 14px;
+}
+
+.unfollow:hover {
+    transition: .5s;
+    background: rgba(152, 43, 252, 0.44);
 }
 
 .follow {
-    background-color: #5eff5e;
-    cursor: pointer;
+    height:20px;
+    margin-left: 5px;
     border: none;
-    box-shadow: 0px 0px 5px 1px #3aab3a;
+    background: rgba(209, 161, 255, 0.3);
+    cursor: pointer;
+    border-radius: 0 10px 0 10px;
+    font-size: 14px;
+}
+
+.follow:hover {
+    transition: .5s;
+    background: rgba(190, 127, 250, 0.3);
 }
